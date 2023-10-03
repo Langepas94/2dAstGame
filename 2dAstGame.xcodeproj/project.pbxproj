@@ -9,16 +9,25 @@
 /* Begin PBXBuildFile section */
 		44059C512ACA9D520090AA0E /* BaseButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44059C502ACA9D520090AA0E /* BaseButtonView.swift */; };
 		44059C542ACA9E7A0090AA0E /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44059C532ACA9E7A0090AA0E /* Resources.swift */; };
+		44059C592ACAAAA20090AA0E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44059C582ACAAAA20090AA0E /* SettingsViewController.swift */; };
+		44059C5B2ACAAAAC0090AA0E /* RecordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44059C5A2ACAAAAC0090AA0E /* RecordsViewController.swift */; };
+		44059C5D2ACAAAB40090AA0E /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44059C5C2ACAAAB40090AA0E /* GameViewController.swift */; };
 		4443FFAC2AC577760079510A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443FFAB2AC577760079510A /* AppDelegate.swift */; };
 		4443FFAE2AC577760079510A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443FFAD2AC577760079510A /* SceneDelegate.swift */; };
 		4443FFB02AC577760079510A /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443FFAF2AC577760079510A /* MainScreenViewController.swift */; };
 		4443FFB52AC577780079510A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4443FFB42AC577780079510A /* Assets.xcassets */; };
 		4443FFB82AC577780079510A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4443FFB62AC577780079510A /* LaunchScreen.storyboard */; };
+		445378862ACC2AD40038CB54 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445378852ACC2AD40038CB54 /* DataBase.swift */; };
+		445378882ACC32B80038CB54 /* DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445378872ACC32B80038CB54 /* DataTypes.swift */; };
+		4453788B2ACC34050038CB54 /* ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4453788A2ACC34050038CB54 /* ActionSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		44059C502ACA9D520090AA0E /* BaseButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButtonView.swift; sourceTree = "<group>"; };
 		44059C532ACA9E7A0090AA0E /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		44059C582ACAAAA20090AA0E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		44059C5A2ACAAAAC0090AA0E /* RecordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsViewController.swift; sourceTree = "<group>"; };
+		44059C5C2ACAAAB40090AA0E /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4443FFA82AC577760079510A /* 2dAstGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2dAstGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4443FFAB2AC577760079510A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4443FFAD2AC577760079510A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +35,9 @@
 		4443FFB42AC577780079510A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4443FFB72AC577780079510A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4443FFB92AC577780079510A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		445378852ACC2AD40038CB54 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
+		445378872ACC32B80038CB54 /* DataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
+		4453788A2ACC34050038CB54 /* ActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +67,40 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		44059C552ACAAA630090AA0E /* Settings Screen */ = {
+			isa = PBXGroup;
+			children = (
+				445378892ACC33F80038CB54 /* Action Sheet */,
+				44059C582ACAAAA20090AA0E /* SettingsViewController.swift */,
+			);
+			path = "Settings Screen";
+			sourceTree = "<group>";
+		};
+		44059C562ACAAA6C0090AA0E /* Records Screen */ = {
+			isa = PBXGroup;
+			children = (
+				44059C5A2ACAAAAC0090AA0E /* RecordsViewController.swift */,
+			);
+			path = "Records Screen";
+			sourceTree = "<group>";
+		};
+		44059C572ACAAA890090AA0E /* Game Screen */ = {
+			isa = PBXGroup;
+			children = (
+				44059C5C2ACAAAB40090AA0E /* GameViewController.swift */,
+			);
+			path = "Game Screen";
+			sourceTree = "<group>";
+		};
+		44059C5E2ACAB0120090AA0E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				445378852ACC2AD40038CB54 /* DataBase.swift */,
+				445378872ACC32B80038CB54 /* DataTypes.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		4443FF9F2AC577760079510A = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +120,10 @@
 		4443FFAA2AC577760079510A /* 2dAstGame */ = {
 			isa = PBXGroup;
 			children = (
+				44059C5E2ACAB0120090AA0E /* Services */,
+				44059C572ACAAA890090AA0E /* Game Screen */,
+				44059C562ACAAA6C0090AA0E /* Records Screen */,
+				44059C552ACAAA630090AA0E /* Settings Screen */,
 				44059C522ACA9E6C0090AA0E /* Resources */,
 				44BA42672ACA995500A68F62 /* MainScreen */,
 				4443FFAB2AC577760079510A /* AppDelegate.swift */,
@@ -83,6 +133,14 @@
 				4443FFB92AC577780079510A /* Info.plist */,
 			);
 			path = 2dAstGame;
+			sourceTree = "<group>";
+		};
+		445378892ACC33F80038CB54 /* Action Sheet */ = {
+			isa = PBXGroup;
+			children = (
+				4453788A2ACC34050038CB54 /* ActionSheet.swift */,
+			);
+			path = "Action Sheet";
 			sourceTree = "<group>";
 		};
 		44BA42672ACA995500A68F62 /* MainScreen */ = {
@@ -164,11 +222,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4453788B2ACC34050038CB54 /* ActionSheet.swift in Sources */,
 				4443FFB02AC577760079510A /* MainScreenViewController.swift in Sources */,
+				44059C5B2ACAAAAC0090AA0E /* RecordsViewController.swift in Sources */,
 				44059C512ACA9D520090AA0E /* BaseButtonView.swift in Sources */,
 				4443FFAC2AC577760079510A /* AppDelegate.swift in Sources */,
+				44059C5D2ACAAAB40090AA0E /* GameViewController.swift in Sources */,
 				44059C542ACA9E7A0090AA0E /* Resources.swift in Sources */,
 				4443FFAE2AC577760079510A /* SceneDelegate.swift in Sources */,
+				445378882ACC32B80038CB54 /* DataTypes.swift in Sources */,
+				445378862ACC2AD40038CB54 /* DataBase.swift in Sources */,
+				44059C592ACAAAA20090AA0E /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
