@@ -20,6 +20,8 @@
 		445378862ACC2AD40038CB54 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445378852ACC2AD40038CB54 /* DataBase.swift */; };
 		445378882ACC32B80038CB54 /* DataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445378872ACC32B80038CB54 /* DataTypes.swift */; };
 		4453788B2ACC34050038CB54 /* ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4453788A2ACC34050038CB54 /* ActionSheet.swift */; };
+		4453788E2ACC57970038CB54 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4453788D2ACC57970038CB54 /* RecordTableViewCell.swift */; };
+		445378912ACD7E080038CB54 /* RecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445378902ACD7E080038CB54 /* RecordModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		445378852ACC2AD40038CB54 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		445378872ACC32B80038CB54 /* DataTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTypes.swift; sourceTree = "<group>"; };
 		4453788A2ACC34050038CB54 /* ActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheet.swift; sourceTree = "<group>"; };
+		4453788D2ACC57970038CB54 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
+		445378902ACD7E080038CB54 /* RecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +83,8 @@
 		44059C562ACAAA6C0090AA0E /* Records Screen */ = {
 			isa = PBXGroup;
 			children = (
+				4453788F2ACD7DF90038CB54 /* Record Model */,
+				4453788C2ACC577D0038CB54 /* Cell */,
 				44059C5A2ACAAAAC0090AA0E /* RecordsViewController.swift */,
 			);
 			path = "Records Screen";
@@ -141,6 +147,22 @@
 				4453788A2ACC34050038CB54 /* ActionSheet.swift */,
 			);
 			path = "Action Sheet";
+			sourceTree = "<group>";
+		};
+		4453788C2ACC577D0038CB54 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4453788D2ACC57970038CB54 /* RecordTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		4453788F2ACD7DF90038CB54 /* Record Model */ = {
+			isa = PBXGroup;
+			children = (
+				445378902ACD7E080038CB54 /* RecordModel.swift */,
+			);
+			path = "Record Model";
 			sourceTree = "<group>";
 		};
 		44BA42672ACA995500A68F62 /* MainScreen */ = {
@@ -224,8 +246,10 @@
 			files = (
 				4453788B2ACC34050038CB54 /* ActionSheet.swift in Sources */,
 				4443FFB02AC577760079510A /* MainScreenViewController.swift in Sources */,
+				4453788E2ACC57970038CB54 /* RecordTableViewCell.swift in Sources */,
 				44059C5B2ACAAAAC0090AA0E /* RecordsViewController.swift in Sources */,
 				44059C512ACA9D520090AA0E /* BaseButtonView.swift in Sources */,
+				445378912ACD7E080038CB54 /* RecordModel.swift in Sources */,
 				4443FFAC2AC577760079510A /* AppDelegate.swift in Sources */,
 				44059C5D2ACAAAB40090AA0E /* GameViewController.swift in Sources */,
 				44059C542ACA9E7A0090AA0E /* Resources.swift in Sources */,

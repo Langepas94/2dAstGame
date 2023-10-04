@@ -18,6 +18,7 @@ enum AppColors {
 enum AppFonts {
     static let buttonFont = UIFont.systemFont(ofSize: 23)
     static let usernameFont = UIFont.systemFont(ofSize: 36)
+    static let cellFont = UIFont.systemFont(ofSize: 25)
 }
 
 enum AppConstraints {

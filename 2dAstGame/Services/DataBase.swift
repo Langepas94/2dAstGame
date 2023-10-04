@@ -26,6 +26,8 @@ class DataBase: DataBaseProtocol {
         case .selectedCar:
             UserDefaults.standard.setValue(data, forKey: UserDefaultsKeys.selectedCar.rawValue)
         }
+        
+       
     }
     // MARK: Read
     func read<T>(dataType: UserDefaultsKeys) -> T? {
