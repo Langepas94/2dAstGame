@@ -9,7 +9,8 @@ import UIKit
 
 class GameViewController: UIViewController {
     
-    var roadSeparatorView = RoadSeparatorAnimated(frame: .zero, speed: 0.23)
+    private let roadSeparatorView = RoadSeparatorAnimated(frame: .zero, speed: 0.23)
+    private let roadSide = RoadSideView(frame: .zero, roadsideWidth: 80)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,8 +24,11 @@ class GameViewController: UIViewController {
 extension GameViewController {
     func setupGameLayers() {
         roadSeparatorView.translatesAutoresizingMaskIntoConstraints = false
+        roadSide.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(roadSeparatorView)
+        view.addSubview(roadSide)
         
         roadSeparatorView.frame = view.bounds
+        roadSide.frame = view.bounds
     }
 }

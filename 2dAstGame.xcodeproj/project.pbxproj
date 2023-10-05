@@ -12,6 +12,7 @@
 		44059C592ACAAAA20090AA0E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44059C582ACAAAA20090AA0E /* SettingsViewController.swift */; };
 		44059C5B2ACAAAAC0090AA0E /* RecordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44059C5A2ACAAAAC0090AA0E /* RecordsViewController.swift */; };
 		44059C5D2ACAAAB40090AA0E /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44059C5C2ACAAAB40090AA0E /* GameViewController.swift */; };
+		4443A4222ACEC70B00C693F4 /* RoadSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443A4212ACEC70B00C693F4 /* RoadSideView.swift */; };
 		4443FFAC2AC577760079510A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443FFAB2AC577760079510A /* AppDelegate.swift */; };
 		4443FFAE2AC577760079510A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443FFAD2AC577760079510A /* SceneDelegate.swift */; };
 		4443FFB02AC577760079510A /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4443FFAF2AC577760079510A /* MainScreenViewController.swift */; };
@@ -31,6 +32,7 @@
 		44059C582ACAAAA20090AA0E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		44059C5A2ACAAAAC0090AA0E /* RecordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsViewController.swift; sourceTree = "<group>"; };
 		44059C5C2ACAAAB40090AA0E /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		4443A4212ACEC70B00C693F4 /* RoadSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadSideView.swift; sourceTree = "<group>"; };
 		4443FFA82AC577760079510A /* 2dAstGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 2dAstGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4443FFAB2AC577760079510A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4443FFAD2AC577760079510A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,7 +97,8 @@
 		44059C572ACAAA890090AA0E /* Game Screen */ = {
 			isa = PBXGroup;
 			children = (
-				445378952ACEB9E70038CB54 /* Road Separator Layer */,
+				4443A4202ACEC4C900C693F4 /* Roadside Layer */,
+				445378952ACEB9E70038CB54 /* Road Separator  */,
 				445378922ACD8C820038CB54 /* Alert */,
 				44059C5C2ACAAAB40090AA0E /* GameViewController.swift */,
 			);
@@ -109,6 +112,14 @@
 				445378872ACC32B80038CB54 /* DataTypes.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		4443A4202ACEC4C900C693F4 /* Roadside Layer */ = {
+			isa = PBXGroup;
+			children = (
+				4443A4212ACEC70B00C693F4 /* RoadSideView.swift */,
+			);
+			path = "Roadside Layer";
 			sourceTree = "<group>";
 		};
 		4443FF9F2AC577760079510A = {
@@ -176,12 +187,12 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
-		445378952ACEB9E70038CB54 /* Road Separator Layer */ = {
+		445378952ACEB9E70038CB54 /* Road Separator  */ = {
 			isa = PBXGroup;
 			children = (
 				445378962ACEB9FC0038CB54 /* RoadSeparatorAnimated.swift */,
 			);
-			path = "Road Separator Layer";
+			path = "Road Separator ";
 			sourceTree = "<group>";
 		};
 		44BA42672ACA995500A68F62 /* MainScreen */ = {
@@ -269,6 +280,7 @@
 				44059C5B2ACAAAAC0090AA0E /* RecordsViewController.swift in Sources */,
 				44059C512ACA9D520090AA0E /* BaseButtonView.swift in Sources */,
 				445378972ACEB9FC0038CB54 /* RoadSeparatorAnimated.swift in Sources */,
+				4443A4222ACEC70B00C693F4 /* RoadSideView.swift in Sources */,
 				445378912ACD7E080038CB54 /* RecordModel.swift in Sources */,
 				4443FFAC2AC577760079510A /* AppDelegate.swift in Sources */,
 				44059C5D2ACAAAB40090AA0E /* GameViewController.swift in Sources */,
