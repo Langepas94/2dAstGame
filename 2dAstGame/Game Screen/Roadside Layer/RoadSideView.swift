@@ -14,10 +14,12 @@ class RoadSideView: UIView {
     private let rightSide = UIView()
     private var width = CGFloat()
     
+    
     init(frame: CGRect, roadsideWidth: CGFloat) {
         super.init(frame: frame)
         setupSideViews()
         self.width = roadsideWidth
+        
     }
     
     func roadSideWidth() {
