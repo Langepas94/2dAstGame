@@ -9,16 +9,16 @@ import UIKit
 
 class MainScreenViewController: UIViewController {
     
-    lazy var startButton: BaseButtonView = {
+    private lazy var startButton: BaseButtonView = {
         let button = BaseButtonView()
         button.frame.size = CGSize(width: 100, height: 100)
         button.center = view.center
         button.setTitle("Start")
-        
+        button.addTarget(self, action: #selector(gameScreen), for: .touchUpInside)
         return button
     }()
     
-    lazy var recordsButton: BaseButtonView = {
+    private lazy var recordsButton: BaseButtonView = {
         let button = BaseButtonView()
         button.frame.size = CGSize(width: 100, height: 100)
         button.center = view.center
@@ -27,7 +27,7 @@ class MainScreenViewController: UIViewController {
         return button
     }()
     
-    lazy var settingsButton: BaseButtonView = {
+    private lazy var settingsButton: BaseButtonView = {
         let button = BaseButtonView()
         button.frame.size = CGSize(width: 100, height: 100)
         button.center = view.center
@@ -36,7 +36,7 @@ class MainScreenViewController: UIViewController {
         return button
     }()
     
-    let buttonsStackView: UIStackView = {
+    private let buttonsStackView: UIStackView = {
        let stack = UIStackView()
         stack.axis = .vertical
         stack.distribution = .equalSpacing
@@ -60,6 +60,12 @@ class MainScreenViewController: UIViewController {
         let vc = RecordsViewController()
         self.present(vc, animated: true)
     }
+    
+    @objc func gameScreen() {
+        let vc = GameViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.present(vc, animated: true)
+    }
 
 }
 
@@ -73,6 +79,5 @@ extension MainScreenViewController {
         buttonsStackView.addArrangedSubview(settingsButton)
         buttonsStackView.frame.size = CGSize(width: 200, height: 200)
         buttonsStackView.center = view.center
-      
     }
 }
