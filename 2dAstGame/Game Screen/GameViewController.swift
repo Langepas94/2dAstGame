@@ -21,78 +21,12 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         setupGameLayers()
         setupGameView()
-        
-    }
-    
-    func crashChecker()  {
-        
-        let frames = roadSide.roadsideFrames()
-        
-        print(frames)
-        print(movingView.frame)
-        frames.forEach { frame in
-            if movingView.frame.intersects(frame) {
-                timer?.invalidate()
-                timer = nil
-                gameAlert.showAlert(title: "CRASH!", message: "SUPER CRASH!", viewController: self) { [weak self] action in
-                    
-                    self?.dismiss(animated: true)
-                    
-                } restartAction: { [weak self] action in
-                    
-                    self?.roadSeparatorView.layoutSubviews()
-                }
-                
-                roadSeparatorView.stopAllAnimations()
-                
-            } else {
-                print("normal")
-            }
-        }
-        
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         timer = nil
     }
-    // MARK: - Game flow
-    
-    @objc private func buttonLeftLongPressed() {
-        timer = Timer.scheduledTimer(timeInterval: 0.003, target: self, selector: #selector(moveViewLeft), userInfo: nil, repeats: true)
-        
-    }
-    
-    @objc private func buttonRightLongPressed() {
-        timer = Timer.scheduledTimer(timeInterval: 0.003, target: self, selector: #selector(moveViewRight), userInfo: nil, repeats: true)
-        
-    }
-    
-    @objc private func buttonReleased() {
-        
-        timer?.invalidate()
-        timer = nil
-        
-    }
-    
-    @objc private func moveViewLeft() {
-        crashChecker()
-        guard movingView.frame.origin.x > 0 else {
-            return
-        }
-        movingView.frame.origin.x -= 1
-        
-    }
-    
-    @objc private func moveViewRight() {
-        crashChecker()
-        guard movingView.frame.maxX < view.bounds.width else {
-            return
-        }
-        movingView.frame.origin.x += 1
-    }
-    
     
 }
 
@@ -146,4 +80,82 @@ extension GameViewController {
     }
     
     
+    
+    
+}
+
+// MARK: - Game Logic Flow
+
+extension GameViewController {
+    // MARK: Crash
+    func crashChecker()  {
+        
+        let frames = roadSide.roadsideFrames()
+        
+        print(frames)
+        print(movingView.frame)
+        frames.forEach { frame in
+            if movingView.frame.intersects(frame) {
+                timer?.invalidate()
+                timer = nil
+                gameAlert.showAlert(title: "CRASH!", message: "SUPER CRASH!", viewController: self) { [weak self] action in
+                    
+                    self?.dismiss(animated: true)
+                    
+                } restartAction: { [weak self] action in
+                    
+                    self?.resetMovingViewPosition()
+                    self?.roadSeparatorView.layoutSubviews()
+                }
+                
+                roadSeparatorView.stopAllAnimations()
+                
+            } else {
+                print("normal")
+            }
+        }
+    }
+    
+    // MARK: Reset position
+    
+    func resetMovingViewPosition() {
+        
+        movingView.center.x = view.center.x
+        
+        view.layoutIfNeeded()
+    }
+    
+    // MARK: Button's and actions
+    
+    @objc private func buttonLeftLongPressed() {
+        timer = Timer.scheduledTimer(timeInterval: 0.003, target: self, selector: #selector(moveViewLeft), userInfo: nil, repeats: true)
+        
+    }
+    
+    @objc private func buttonRightLongPressed() {
+        timer = Timer.scheduledTimer(timeInterval: 0.003, target: self, selector: #selector(moveViewRight), userInfo: nil, repeats: true)
+    }
+    
+    @objc private func buttonReleased() {
+        
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    @objc private func moveViewLeft() {
+        crashChecker()
+        guard movingView.frame.origin.x > 0 else {
+            return
+        }
+        movingView.frame.origin.x -= 1
+        
+    }
+    
+    @objc private func moveViewRight() {
+        crashChecker()
+        guard movingView.frame.maxX < view.bounds.width else {
+            return
+        }
+        movingView.frame.origin.x += 1
+    }
 }
