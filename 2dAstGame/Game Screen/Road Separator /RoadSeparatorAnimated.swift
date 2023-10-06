@@ -24,6 +24,12 @@ class RoadSeparatorAnimated: UIView {
         setupLayers(0)
     }
     
+    func stopAllAnimations() {
+        layer.sublayers?.forEach({ layer in
+            layer.removeAllAnimations()
+        })
+    }
+    
     private func setupLayers(_ speed: CFTimeInterval) {
 //        roadLayer.strokeColor = UIColor.gray.cgColor
 //        roadLayer.lineWidth = 10
@@ -45,9 +51,12 @@ class RoadSeparatorAnimated: UIView {
         separatorLayer.add(separatorAnimation, forKey: "lineDashPhase")
     }
     
+    private func startAnimations() {
+        
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         let roadPath = UIBezierPath()
         roadPath.move(to: CGPoint(x: 0, y: bounds.height / 2))
         roadPath.addLine(to: CGPoint(x: bounds.width, y: bounds.height / 2))
@@ -57,6 +66,8 @@ class RoadSeparatorAnimated: UIView {
         separatorPath.move(to: CGPoint(x: bounds.width / 2, y: 0))
         separatorPath.addLine(to: CGPoint(x: bounds.width / 2, y: bounds.height))
         separatorLayer.path = separatorPath.cgPath
+        
+        setupLayers(0.2)
     }
 }
 

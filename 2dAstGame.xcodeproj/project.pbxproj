@@ -24,6 +24,7 @@
 		4453788E2ACC57970038CB54 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4453788D2ACC57970038CB54 /* RecordTableViewCell.swift */; };
 		445378912ACD7E080038CB54 /* RecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445378902ACD7E080038CB54 /* RecordModel.swift */; };
 		445378972ACEB9FC0038CB54 /* RoadSeparatorAnimated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445378962ACEB9FC0038CB54 /* RoadSeparatorAnimated.swift */; };
+		44A6DC632ACEE19F00552DFF /* GameAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6DC622ACEE19F00552DFF /* GameAlert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		4453788D2ACC57970038CB54 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		445378902ACD7E080038CB54 /* RecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModel.swift; sourceTree = "<group>"; };
 		445378962ACEB9FC0038CB54 /* RoadSeparatorAnimated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadSeparatorAnimated.swift; sourceTree = "<group>"; };
+		44A6DC622ACEE19F00552DFF /* GameAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 		445378922ACD8C820038CB54 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
+				44A6DC622ACEE19F00552DFF /* GameAlert.swift */,
 			);
 			path = Alert;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				44059C5D2ACAAAB40090AA0E /* GameViewController.swift in Sources */,
 				44059C542ACA9E7A0090AA0E /* Resources.swift in Sources */,
 				4443FFAE2AC577760079510A /* SceneDelegate.swift in Sources */,
+				44A6DC632ACEE19F00552DFF /* GameAlert.swift in Sources */,
 				445378882ACC32B80038CB54 /* DataTypes.swift in Sources */,
 				445378862ACC2AD40038CB54 /* DataBase.swift in Sources */,
 				44059C592ACAAAA20090AA0E /* SettingsViewController.swift in Sources */,
