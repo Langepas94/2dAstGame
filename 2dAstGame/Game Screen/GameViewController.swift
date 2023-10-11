@@ -18,15 +18,15 @@ class GameViewController: UIViewController {
     private let stoneBreaker = UIView()
     private var timer: Timer?
     private var gameAlert = GameAlert()
-    var gametimer: Timer?
+    private var gametimer: Timer?
     private var displayLink: CADisplayLink?
+    private var gameScore: ScoreModel = ScoreModel(name: "Default Player", score: 0)
     
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setupGameLayers()
         setupGameView()
-        
     }
     
     func displayLinkActive() {
@@ -36,42 +36,39 @@ class GameViewController: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        timer = nil
-        displayLink?.invalidate()
-        displayLink = nil
-        gametimer = nil
+       invalidateAllTimers()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-       
-    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         displayLinkActive()
-        gameBreaker()
+        gameStarter()
     }
 }
 
 // MARK: - Game setup
 
 extension GameViewController {
+    
     func setupGameLayers() {
         roadSeparatorView.translatesAutoresizingMaskIntoConstraints = false
         roadSide.translatesAutoresizingMaskIntoConstraints = false
+        
         view.addSubview(roadSeparatorView)
         view.addSubview(roadSide)
+        view.addSubview(movingView)
+        view.addSubview(stackView)
+        view.addSubview(stoneBreaker)
         
         roadSeparatorView.frame = view.bounds
         roadSide.frame = view.bounds
     }
     
-    func gameBreaker() {
-        
-//        gametimer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(animationsTimer), userInfo: nil, repeats: true)
+    func gameStarter() {
         
         gametimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { timer in
             self.animationsTimer()
+            self.gameScore.score += 1
         })
     }
     
@@ -82,9 +79,6 @@ extension GameViewController {
         movingView.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stoneBreaker.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(movingView)
-        view.addSubview(stackView)
-        view.addSubview(stoneBreaker)
         
         stackView.axis = .horizontal
         stackView.distribution = .equalCentering
@@ -93,20 +87,15 @@ extension GameViewController {
             stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 36),
             stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -36),
-            
             movingView.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -36),
             movingView.heightAnchor.constraint(equalToConstant: 100),
             movingView.widthAnchor.constraint(equalToConstant: 100),
             movingView.centerXAnchor.constraint(equalTo: stackView.centerXAnchor),
-            
-            //            stoneBreaker.heightAnchor.constraint(equalToConstant: 100),
-            //            stoneBreaker.widthAnchor.constraint(equalToConstant: 100),
-            
-            //            stoneBreaker.topAnchor.constraint(equalTo: view.topAnchor, constant: -100)
         ])
         
         stoneBreaker.frame.origin = .init(x: .random(in: 0...100), y: -100)
         stoneBreaker.frame.size = CGSize(width: 100, height: 100)
+        
         let buttonLeft = UIButton(type: .system)
         
         buttonLeft.setTitle("← Налево", for: .normal)
@@ -139,53 +128,52 @@ extension GameViewController {
         
         if movingFrame.intersects(stoneFrame) {
             stoneBreaker.frame = stoneFrame
-            stoneBreaker.layer.removeAllAnimations()
-            displayLink?.remove(from: .current, forMode: .common)
-            displayLink?.invalidate()
-            displayLink = nil
-            timer?.invalidate()
-            timer = nil
-            gametimer?.invalidate()
-            gametimer = nil
+            stopAllAnimations()
+            invalidateAllTimers()
             
             gameAlert.showAlert(title: "CRASH!", message: "SUPER CRASH!", viewController: self) { [weak self] action in
-                print("end")
+                
                 self?.dismiss(animated: true)
             } restartAction: { [weak self] action in
                 self?.displayLinkActive()
-                self?.stoneBreaker.frame.origin = .init(x: 0, y: -100)
-                self?.gameBreaker()
+                self?.gameStarter()
                 self?.resetMovingViewPosition()
-                self?.roadSeparatorView.layoutSubviews()
             }
-            roadSeparatorView.stopAllAnimations()
         }
+        
         frames.forEach { frame in
             if movingView.frame.intersects(frame) {
-                stoneBreaker.layer.removeAllAnimations()
-                displayLink?.remove(from: .current, forMode: .common)
-                displayLink?.invalidate()
-                displayLink = nil
-                timer?.invalidate()
-                timer = nil
-                gametimer?.invalidate()
-                gametimer = nil
+                stopAllAnimations()
+                invalidateAllTimers()
+                
                 gameAlert.showAlert(title: "CRASH!", message: "SUPER CRASH!", viewController: self) { [weak self] action in
-                    print("end")
-                  
                     self?.dismiss(animated: true)
                 } restartAction: { [weak self] action in
                     self?.displayLinkActive()
-                    self?.stoneBreaker.frame.origin = .init(x: 0, y: -100)
-                    self?.gameBreaker()
+                    self?.gameStarter()
                     self?.resetMovingViewPosition()
-                    self?.roadSeparatorView.layoutSubviews()
                 }
-                roadSeparatorView.stopAllAnimations()
+                
             } else {
                 //                print("normal")
             }
         }
+    }
+    
+    func stopAllAnimations() {
+        print(gameScore)
+        stoneBreaker.layer.removeAllAnimations()
+        roadSeparatorView.stopAllAnimations()
+    }
+    
+    func invalidateAllTimers() {
+        displayLink?.remove(from: .current, forMode: .common)
+        displayLink?.invalidate()
+        displayLink = nil
+        timer?.invalidate()
+        timer = nil
+        gametimer?.invalidate()
+        gametimer = nil
     }
     
     // MARK: Reset position
@@ -193,15 +181,16 @@ extension GameViewController {
     func resetMovingViewPosition() {
         stoneBreaker.frame.origin = .init(x: .random(in: 0...100), y: -100)
         movingView.center.x = view.center.x
+        roadSeparatorView.layoutSubviews()
         view.layoutIfNeeded()
     }
     
     @objc func animationsTimer() {
-        let frames = roadSide.roadsideFrameInside()
-        self.stoneBreaker.frame.origin = .init(x: .random(in: frames.0...frames.1 - 100), y: -100)
-          UIView.animate(withDuration: 2, delay: 0, options: [.curveLinear], animations: {
-              self.stoneBreaker.frame.origin.y = self.view.frame.maxY + 100
-          })
+        let framesEdges = roadSide.roadsideFrameInside()
+        self.stoneBreaker.frame.origin = .init(x: .random(in: framesEdges.0...framesEdges.1 - 100), y: -100)
+        UIView.animate(withDuration: 2, delay: 0, options: [.curveLinear], animations: {
+            self.stoneBreaker.frame.origin.y = self.view.frame.maxY + 100
+        })
         
         if gametimer == nil {
             stoneBreaker.layer.removeAllAnimations()

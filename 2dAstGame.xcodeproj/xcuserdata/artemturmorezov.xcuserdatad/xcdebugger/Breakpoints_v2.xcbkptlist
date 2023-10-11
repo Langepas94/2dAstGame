@@ -30,8 +30,8 @@
             filePath = "2dAstGame/Game Screen/GameViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "animationsTimer()"
             landmarkType = "7">
             <Locations>
@@ -86,22 +86,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "65D08199-7503-46C5-B5D8-2C9A557D3F77"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "2dAstGame/Game Screen/GameViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "gameBreaker()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "ED7CA1B9-3A7C-4A37-8211-1F27ABDB220C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -109,8 +93,8 @@
             filePath = "2dAstGame/Game Screen/GameViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "199"
-            endingLineNumber = "199"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "animationsTimer()"
             landmarkType = "7">
          </BreakpointContent>

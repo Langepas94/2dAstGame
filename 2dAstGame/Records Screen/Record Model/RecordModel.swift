@@ -8,6 +8,6 @@
 import Foundation
 
 struct RecordModel {
-    let name: String
-    let score: Int
+    var name: String
+    var score: Int
 }

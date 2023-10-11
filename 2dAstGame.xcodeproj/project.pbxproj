@@ -24,6 +24,7 @@
 		4453788E2ACC57970038CB54 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4453788D2ACC57970038CB54 /* RecordTableViewCell.swift */; };
 		445378912ACD7E080038CB54 /* RecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445378902ACD7E080038CB54 /* RecordModel.swift */; };
 		445378972ACEB9FC0038CB54 /* RoadSeparatorAnimated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445378962ACEB9FC0038CB54 /* RoadSeparatorAnimated.swift */; };
+		4488ADFD2AD6F21800912F66 /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4488ADFC2AD6F21800912F66 /* ScoreModel.swift */; };
 		44A6DC632ACEE19F00552DFF /* GameAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6DC622ACEE19F00552DFF /* GameAlert.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		4453788D2ACC57970038CB54 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
 		445378902ACD7E080038CB54 /* RecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModel.swift; sourceTree = "<group>"; };
 		445378962ACEB9FC0038CB54 /* RoadSeparatorAnimated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadSeparatorAnimated.swift; sourceTree = "<group>"; };
+		4488ADFC2AD6F21800912F66 /* ScoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
 		44A6DC622ACEE19F00552DFF /* GameAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,6 +101,7 @@
 		44059C572ACAAA890090AA0E /* Game Screen */ = {
 			isa = PBXGroup;
 			children = (
+				4488ADFB2AD6F20B00912F66 /* Model */,
 				4443A4202ACEC4C900C693F4 /* Roadside Layer */,
 				445378952ACEB9E70038CB54 /* Road Separator  */,
 				445378922ACD8C820038CB54 /* Alert */,
@@ -198,6 +201,14 @@
 			path = "Road Separator ";
 			sourceTree = "<group>";
 		};
+		4488ADFB2AD6F20B00912F66 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4488ADFC2AD6F21800912F66 /* ScoreModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		44BA42672ACA995500A68F62 /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +301,7 @@
 				44059C542ACA9E7A0090AA0E /* Resources.swift in Sources */,
 				4443FFAE2AC577760079510A /* SceneDelegate.swift in Sources */,
 				44A6DC632ACEE19F00552DFF /* GameAlert.swift in Sources */,
+				4488ADFD2AD6F21800912F66 /* ScoreModel.swift in Sources */,
 				445378882ACC32B80038CB54 /* DataTypes.swift in Sources */,
 				445378862ACC2AD40038CB54 /* DataBase.swift in Sources */,
 				44059C592ACAAAA20090AA0E /* SettingsViewController.swift in Sources */,
