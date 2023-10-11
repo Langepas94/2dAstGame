@@ -63,6 +63,7 @@ class MainScreenViewController: UIViewController {
     
     @objc func gameScreen() {
         let vc = GameViewController()
+        vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true)
     }

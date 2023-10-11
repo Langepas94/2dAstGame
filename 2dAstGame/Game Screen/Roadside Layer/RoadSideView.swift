@@ -35,6 +35,14 @@ class RoadSideView: UIView {
         return [leftRect, rightRect]
     }
     
+    func roadsideFrameInside() -> (CGFloat, CGFloat) {
+//        layoutSubviews()
+        let leftRect = leftSide.frame.maxX
+        let rightRect = rightSide.frame.minX
+        
+        return (leftRect, rightRect)
+    }
+    
     private func setupSideViews() {
         leftSide.backgroundColor = .orange
         rightSide.backgroundColor = .orange
