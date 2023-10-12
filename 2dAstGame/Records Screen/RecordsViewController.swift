@@ -17,6 +17,7 @@ class RecordsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
 
     }
     

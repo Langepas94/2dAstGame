@@ -25,6 +25,7 @@
 		445378912ACD7E080038CB54 /* RecordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445378902ACD7E080038CB54 /* RecordModel.swift */; };
 		445378972ACEB9FC0038CB54 /* RoadSeparatorAnimated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445378962ACEB9FC0038CB54 /* RoadSeparatorAnimated.swift */; };
 		4488ADFD2AD6F21800912F66 /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4488ADFC2AD6F21800912F66 /* ScoreModel.swift */; };
+		4488AE012AD7EEFC00912F66 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4488AE002AD7EEFC00912F66 /* PickerView.swift */; };
 		44A6DC632ACEE19F00552DFF /* GameAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6DC622ACEE19F00552DFF /* GameAlert.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		445378902ACD7E080038CB54 /* RecordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordModel.swift; sourceTree = "<group>"; };
 		445378962ACEB9FC0038CB54 /* RoadSeparatorAnimated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadSeparatorAnimated.swift; sourceTree = "<group>"; };
 		4488ADFC2AD6F21800912F66 /* ScoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
+		4488AE002AD7EEFC00912F66 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		44A6DC622ACEE19F00552DFF /* GameAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -82,6 +84,7 @@
 		44059C552ACAAA630090AA0E /* Settings Screen */ = {
 			isa = PBXGroup;
 			children = (
+				4488ADFF2AD7EEDB00912F66 /* PickerView */,
 				445378892ACC33F80038CB54 /* Action Sheet */,
 				44059C582ACAAAA20090AA0E /* SettingsViewController.swift */,
 			);
@@ -209,6 +212,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		4488ADFF2AD7EEDB00912F66 /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				4488AE002AD7EEFC00912F66 /* PickerView.swift */,
+			);
+			path = PickerView;
+			sourceTree = "<group>";
+		};
 		44BA42672ACA995500A68F62 /* MainScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +301,7 @@
 			files = (
 				4453788B2ACC34050038CB54 /* ActionSheet.swift in Sources */,
 				4443FFB02AC577760079510A /* MainScreenViewController.swift in Sources */,
+				4488AE012AD7EEFC00912F66 /* PickerView.swift in Sources */,
 				4453788E2ACC57970038CB54 /* RecordTableViewCell.swift in Sources */,
 				44059C5B2ACAAAAC0090AA0E /* RecordsViewController.swift in Sources */,
 				44059C512ACA9D520090AA0E /* BaseButtonView.swift in Sources */,

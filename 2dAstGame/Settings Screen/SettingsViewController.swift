@@ -12,7 +12,6 @@ class SettingsViewController: UIViewController {
     private var imageView: UIImageView = {
         let image = UIImageView()
         image.backgroundColor = .orange
-        
         image.clipsToBounds = true
         image.isUserInteractionEnabled = true
         image.contentMode = .scaleAspectFill
@@ -27,6 +26,12 @@ class SettingsViewController: UIViewController {
         name.textAlignment = .center
         name.font = AppFonts.usernameFont
         return name
+    }()
+    
+    private let carPicker: PickerView = {
+        let picker = PickerView()
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        return picker
     }()
     
     private let db = DataBase()
@@ -69,19 +74,19 @@ class SettingsViewController: UIViewController {
         present(alert, animated: true)
     }
     
-   private func setupDelegates() {
+    private func setupDelegates() {
         userName.delegate = self
     }
 }
 
-// MARK - Setup UI
+// MARK: - Setup UI
 
 extension SettingsViewController {
     private func setupUI() {
         view.backgroundColor = AppColors.backgroundColor
         view.addSubview(imageView)
         view.addSubview(userName)
-        
+        view.addSubview(carPicker)
         
         if let imageData: Data = db.read(dataType: .avatar) {
             let stored = UIImage(data: imageData)
@@ -96,6 +101,11 @@ extension SettingsViewController {
             userName.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: AppConstraints.topAvatar),
             userName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstraints.leadingAvatar),
             userName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppConstraints.trailingAvatar),
+            
+            carPicker.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 16),
+            carPicker.leadingAnchor.constraint(equalTo: userName.leadingAnchor, constant: 0),
+            carPicker.trailingAnchor.constraint(equalTo: userName.trailingAnchor, constant: 0),
+            carPicker.heightAnchor.constraint(equalToConstant: 100)
         ])
     }
 }

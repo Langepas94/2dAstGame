@@ -10,4 +10,8 @@ import Foundation
 struct ScoreModel: Codable {
     var name: String
     var score: Int
+    
+    mutating func clear() {
+        score = 0
+    }
 }

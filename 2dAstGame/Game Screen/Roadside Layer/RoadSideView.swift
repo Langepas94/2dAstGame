@@ -27,12 +27,12 @@ class RoadSideView: UIView {
         rightSide.frame = CGRect(x: bounds.maxX - self.width, y: 0, width: width, height: bounds.height)
     }
     
-    func roadsideFrames() -> [CGRect] {
+    func roadsideFrames() -> (CGRect, CGRect) {
 //        layoutSubviews()
         let leftRect = leftSide.frame
         let rightRect = rightSide.frame
         
-        return [leftRect, rightRect]
+        return (leftRect, rightRect)
     }
     
     func roadsideFrameInside() -> (CGFloat, CGFloat) {
