@@ -26,6 +26,8 @@
 		445378972ACEB9FC0038CB54 /* RoadSeparatorAnimated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445378962ACEB9FC0038CB54 /* RoadSeparatorAnimated.swift */; };
 		4488ADFD2AD6F21800912F66 /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4488ADFC2AD6F21800912F66 /* ScoreModel.swift */; };
 		4488AE012AD7EEFC00912F66 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4488AE002AD7EEFC00912F66 /* PickerView.swift */; };
+		4488AE042AD91A9100912F66 /* FileManagerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4488AE032AD91A9100912F66 /* FileManagerWorker.swift */; };
+		4488AE072AD96F6D00912F66 /* UIImage + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4488AE062AD96F6D00912F66 /* UIImage + extension.swift */; };
 		44A6DC632ACEE19F00552DFF /* GameAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44A6DC622ACEE19F00552DFF /* GameAlert.swift */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +53,8 @@
 		445378962ACEB9FC0038CB54 /* RoadSeparatorAnimated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadSeparatorAnimated.swift; sourceTree = "<group>"; };
 		4488ADFC2AD6F21800912F66 /* ScoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
 		4488AE002AD7EEFC00912F66 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		4488AE032AD91A9100912F66 /* FileManagerWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerWorker.swift; sourceTree = "<group>"; };
+		4488AE062AD96F6D00912F66 /* UIImage + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage + extension.swift"; sourceTree = "<group>"; };
 		44A6DC622ACEE19F00552DFF /* GameAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAlert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,6 +120,7 @@
 		44059C5E2ACAB0120090AA0E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				4488AE022AD91A7E00912F66 /* FileManager */,
 				445378852ACC2AD40038CB54 /* DataBase.swift */,
 				445378872ACC32B80038CB54 /* DataTypes.swift */,
 			);
@@ -149,6 +154,7 @@
 		4443FFAA2AC577760079510A /* 2dAstGame */ = {
 			isa = PBXGroup;
 			children = (
+				4488AE052AD96F5D00912F66 /* Extension */,
 				44059C5E2ACAB0120090AA0E /* Services */,
 				44059C572ACAAA890090AA0E /* Game Screen */,
 				44059C562ACAAA6C0090AA0E /* Records Screen */,
@@ -218,6 +224,22 @@
 				4488AE002AD7EEFC00912F66 /* PickerView.swift */,
 			);
 			path = PickerView;
+			sourceTree = "<group>";
+		};
+		4488AE022AD91A7E00912F66 /* FileManager */ = {
+			isa = PBXGroup;
+			children = (
+				4488AE032AD91A9100912F66 /* FileManagerWorker.swift */,
+			);
+			path = FileManager;
+			sourceTree = "<group>";
+		};
+		4488AE052AD96F5D00912F66 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4488AE062AD96F6D00912F66 /* UIImage + extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		44BA42672ACA995500A68F62 /* MainScreen */ = {
@@ -304,11 +326,13 @@
 				4488AE012AD7EEFC00912F66 /* PickerView.swift in Sources */,
 				4453788E2ACC57970038CB54 /* RecordTableViewCell.swift in Sources */,
 				44059C5B2ACAAAAC0090AA0E /* RecordsViewController.swift in Sources */,
+				4488AE072AD96F6D00912F66 /* UIImage + extension.swift in Sources */,
 				44059C512ACA9D520090AA0E /* BaseButtonView.swift in Sources */,
 				445378972ACEB9FC0038CB54 /* RoadSeparatorAnimated.swift in Sources */,
 				4443A4222ACEC70B00C693F4 /* RoadSideView.swift in Sources */,
 				445378912ACD7E080038CB54 /* RecordModel.swift in Sources */,
 				4443FFAC2AC577760079510A /* AppDelegate.swift in Sources */,
+				4488AE042AD91A9100912F66 /* FileManagerWorker.swift in Sources */,
 				44059C5D2ACAAAB40090AA0E /* GameViewController.swift in Sources */,
 				44059C542ACA9E7A0090AA0E /* Resources.swift in Sources */,
 				4443FFAE2AC577760079510A /* SceneDelegate.swift in Sources */,

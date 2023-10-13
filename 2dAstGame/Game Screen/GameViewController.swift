@@ -21,13 +21,22 @@ class GameViewController: UIViewController {
     private var gameAlert = GameAlert()
     private var gametimer: Timer?
     private var displayLink: CADisplayLink?
-    private var gameScore: ScoreModel = ScoreModel(name: "Default Player", score: 0)
+    private var gameScore: ScoreModel = ScoreModel(name: "", score: 0)
+    var db = DataBase()
     
     // MARK: - ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupGameScore()
         setupGameLayers()
         setupGameView()
+        
+    }
+    func setupGameScore() {
+        if let name: String = db.read(dataType: .name) {
+            gameScore = ScoreModel(name: name, score: 0)
+        }
+        
     }
     
     func displayLinkActive() {
@@ -75,8 +84,11 @@ extension GameViewController {
         view.addSubview(stoneBreaker)
         view.addSubview(gameScoreView)
         stoneBreaker.backgroundColor = .blue
-        movingView.image = UIImage(named: "car2")
         
+        if let image: String = db.read(dataType: .selectedCar) {
+            movingView.image = UIImage(named: image)
+        }
+       
         roadSeparatorView.frame = view.bounds
         roadSide.frame = view.bounds
     }
@@ -137,9 +149,11 @@ extension GameViewController {
     }
     
     func gameAlertAlarm() {
+        self.db.save(dataType: .records, data: self.gameScore)
         gameAlert.showAlert(title: "CRASH!", message: "SUPER CRASH!", viewController: self) { [weak self] action in
             self?.dismiss(animated: true)
         } restartAction: { [weak self] action in
+          
             self?.displayLinkActive()
             self?.gameStarter()
             self?.resetMovingViewPosition()

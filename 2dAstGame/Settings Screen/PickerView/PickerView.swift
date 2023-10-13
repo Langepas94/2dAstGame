@@ -7,26 +7,51 @@
 
 import UIKit
 
+enum Cars: String {
+    case car1 = "car1"
+    case car2 = "car2"
+    case car3 = "car3"
+    
+    static var allCases: [String] {
+        return [car1.rawValue, car2.rawValue, car3.rawValue]
+    }
+}
+
 class PickerView: UIView {
     let carImageView = UIImageView()
     let leftButton = UIButton(type: .system)
     let rightButton = UIButton(type: .system)
     let stackView = UIStackView()
-    var carImages = [UIImage(named: "car1"), UIImage(named: "car2"), UIImage(named: "car3")]
-    var currentCarIndex = 0
     
+    var carImages = Cars.allCases.map { name in
+        UIImage(named: name)
+    }
+    var currentCarIndex: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: "selectedCarIndex")
+        } set {
+            UserDefaults.standard.set(newValue, forKey: "selectedCarIndex")
+        }
+    }
+    var db = DataBase()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
-        
+        setInitialCar()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setInitialCar() {
+            currentCarIndex = UserDefaults.standard.integer(forKey: "selectedCarIndex")
+            carImageView.image = carImages[currentCarIndex]
+        }
+    
     func setupUI() {
+    
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stackView)
         carImageView.frame.size = CGSize(width: 100, height: 100)
@@ -37,21 +62,21 @@ class PickerView: UIView {
         backgroundColor = .clear
         
         carImageView.contentMode = .scaleAspectFit
-        //            carImageView/*.frame = CGRect(x: 50, y: 100, width: 200, height: 200)*/
+        
         carImageView.image = carImages[currentCarIndex]
-        //            addSubview(carImageView)
+        
         
         leftButton.setTitle("<", for: .normal)
         leftButton.titleLabel?.font = UIFont.systemFont(ofSize: 30)
-        //            leftButton.frame = CGRect(x: 50, y: 350, width: 100, height: 50)
+        
         leftButton.addTarget(self, action: #selector(selectLeftCar), for: .touchUpInside)
-        //            addSubview(leftButton)
+        
         
         rightButton.setTitle(">", for: .normal)
         rightButton.titleLabel?.font = UIFont.systemFont(ofSize: 30)
-        //            rightButton.frame = CGRect(x: 150, y: 350, width: 100, height: 50)
+        
         rightButton.addTarget(self, action: #selector(selectRightCar), for: .touchUpInside)
-        //            addSubview(rightButton)
+        
         stackView.addArrangedSubview(leftButton)
         stackView.addArrangedSubview(carImageView)
         stackView.addArrangedSubview(rightButton)
@@ -64,14 +89,23 @@ class PickerView: UIView {
         ])
     }
     
+    func getCar(_ index: Int) -> String {
+        let array = Cars.allCases
+        return array[index]
+    }
+    
     @objc func selectLeftCar() {
         currentCarIndex = (currentCarIndex - 1 + carImages.count) % carImages.count
         carImageView.image = carImages[currentCarIndex]
+        let name = getCar(currentCarIndex)
+        db.save(dataType: .selectedCar, data: name)
     }
     
     @objc func selectRightCar() {
         currentCarIndex = (currentCarIndex + 1) % carImages.count
         carImageView.image = carImages[currentCarIndex]
+        let name = getCar(currentCarIndex)
+        db.save(dataType: .selectedCar, data: name)
     }
     
     

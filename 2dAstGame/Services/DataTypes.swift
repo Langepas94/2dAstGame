@@ -11,5 +11,6 @@ enum UserDefaultsKeys: String {
     case name = "name"
     case avatar = "avatarImage"
     case selectedCar = "selectedCar"
+    case records = "record"
 }
 

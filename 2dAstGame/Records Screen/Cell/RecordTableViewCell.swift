@@ -13,6 +13,15 @@ class RecordTableViewCell: UITableViewCell {
     
     // MARK: - Variables
     
+    private var userImage: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFit
+        image.clipsToBounds = true
+        image.layer.masksToBounds = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
+    
     private var userName: UILabel = {
         let name = UILabel()
         name.translatesAutoresizingMaskIntoConstraints = false
@@ -29,39 +38,51 @@ class RecordTableViewCell: UITableViewCell {
         return name
     }()
     
-    private let buttonsStackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.distribution = .equalSpacing
-        stack.alignment = .center
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
-    }()
-    
     // MARK: - Flow
     
     func setupUI() {
-        addSubview(buttonsStackView)
-        buttonsStackView.addArrangedSubview(userName)
-        buttonsStackView.addArrangedSubview(userRecord)
-        NSLayoutConstraint.activate([
-            buttonsStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
-            buttonsStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
-            buttonsStackView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            buttonsStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5)
 
-        ])
+        contentView.addSubview(userImage)
+        contentView.addSubview(userName)
+        contentView.addSubview(userRecord)
+        
+                NSLayoutConstraint.activate([
+                    userImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+                    userImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+                    userImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+                    
+                    userName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+                    userName.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: -5),
+                    userName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+                    userName.centerYAnchor.constraint(equalTo: userImage.centerYAnchor),
+                    
+                    userRecord.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+                    userRecord.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+                    userRecord.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+                    userRecord.centerYAnchor.constraint(equalTo: userImage.centerYAnchor),
+                    
+                ])
     }
     
-    func configure(_ recordsData: RecordModel) {
+    func configure(_ recordsData: ScoreModel) {
         userName.text = recordsData.name
         userRecord.text = String(recordsData.score)
-        contentView.layoutSubviews()
+        
+        if let img = recordsData.userImg {
+            userImage.image = UIImage(contentsOfFile: img)
+        }
+        
+        userImage.layoutIfNeeded()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         selectionStyle = .none
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        userImage.image = nil
     }
     
     // MARK: - Init

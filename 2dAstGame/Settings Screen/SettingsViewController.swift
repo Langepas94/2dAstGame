@@ -88,9 +88,13 @@ extension SettingsViewController {
         view.addSubview(userName)
         view.addSubview(carPicker)
         
-        if let imageData: Data = db.read(dataType: .avatar) {
-            let stored = UIImage(data: imageData)
-            imageView.image = stored
+//        if let imageData: Data = db.read(dataType: .avatar) {
+//            let stored = UIImage(data: imageData)
+//            imageView.image = stored
+//        }
+        
+        if let image: UIImage = db.read(dataType: .avatar) {
+            imageView.image = image
         }
         
         NSLayoutConstraint.activate([
@@ -121,9 +125,11 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
         if let pickedImage = info[.originalImage] as? UIImage {
             imageView.image = pickedImage
             
-            if let imageData = pickedImage.pngData() {
-                db.save(dataType: .avatar, data: imageData)
-            }
+//            if let imageData = pickedImage.pngData() {
+//                db.save(dataType: .avatar, data: imageData)
+//            }
+            
+            db.save(dataType: .avatar, data: pickedImage)
         }
         picker.dismiss(animated: true)
     }
