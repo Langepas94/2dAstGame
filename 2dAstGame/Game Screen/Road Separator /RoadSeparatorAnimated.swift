@@ -7,22 +7,15 @@
 
 import Foundation
 import UIKit
-import QuartzCore
 
 class RoadSeparatorAnimated: UIView {
+    
     private let roadLayer = CAShapeLayer()
     private let separatorLayer = CAShapeLayer()
     private let separatorAnimation = CABasicAnimation(keyPath: "lineDashPhase")
-    
-    init(frame: CGRect, speed: CFTimeInterval) {
-        super.init(frame: frame)
-        setupLayers(speed)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        setupLayers(0)
-    }
+    private var speed: CFTimeInterval?
+
+    // MARK: Stop All
     
     func stopAllAnimations() {
         layer.sublayers?.forEach({ layer in
@@ -30,17 +23,14 @@ class RoadSeparatorAnimated: UIView {
         })
     }
     
+    // MARK: Setup Line with speed
+    
     private func setupLayers(_ speed: CFTimeInterval) {
-//        roadLayer.strokeColor = UIColor.gray.cgColor
-//        roadLayer.lineWidth = 10
-//        roadLayer.fillColor = UIColor.clear.cgColor
-//        
-        separatorLayer.strokeColor = UIColor.white.cgColor
-        separatorLayer.lineWidth = 6
-        separatorLayer.fillColor = UIColor.clear.cgColor
-        separatorLayer.lineDashPattern = [26, 8]
+        separatorLayer.strokeColor = AppResources.GameConstants.RoadConstants.Colors.roadLineColor
+        separatorLayer.lineWidth = AppResources.GameConstants.RoadConstants.Values.roadLineWidth
+        separatorLayer.fillColor = AppResources.GameConstants.RoadConstants.Colors.betweenLine
+        separatorLayer.lineDashPattern = AppResources.GameConstants.RoadConstants.Values.lineDash
         
-//        layer.addSublayer(roadLayer)
         layer.addSublayer(separatorLayer)
         
         separatorAnimation.fromValue = NSNumber(value: 0)
@@ -49,10 +39,6 @@ class RoadSeparatorAnimated: UIView {
         separatorAnimation.repeatCount = .infinity
         separatorAnimation.timingFunction = CAMediaTimingFunction(name: .linear)
         separatorLayer.add(separatorAnimation, forKey: "lineDashPhase")
-    }
-    
-    private func startAnimations() {
-        
     }
     
     override func layoutSubviews() {
@@ -67,7 +53,21 @@ class RoadSeparatorAnimated: UIView {
         separatorPath.addLine(to: CGPoint(x: bounds.width / 2, y: bounds.height))
         separatorLayer.path = separatorPath.cgPath
         
-        setupLayers(0.2)
+        setupLayers(speed ?? 0.2)
+    }
+    
+    // MARK: - Init's
+    
+    init(frame: CGRect, speed: CFTimeInterval) {
+        super.init(frame: frame)
+        self.speed = speed
+        setupLayers(speed)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+      
+        setupLayers(0)
     }
 }
 

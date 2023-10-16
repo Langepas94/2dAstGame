@@ -22,14 +22,21 @@ class SettingsViewController: UIViewController {
     private var userName: UITextField = {
         let name = UITextField()
         name.translatesAutoresizingMaskIntoConstraints = false
-        name.textColor = AppColors.mainText
+        name.textColor = AppResources.AppScreenUIColors.mainText
         name.textAlignment = .center
-        name.font = AppFonts.usernameFont
+        name.font = AppResources.AppFonts.usernameFont
+        name.adjustsFontSizeToFitWidth = true
         return name
     }()
     
-    private let carPicker: PickerView = {
-        let picker = PickerView()
+    private let carPicker: CarPickerView = {
+        let picker = CarPickerView()
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        return picker
+    }()
+    
+    private let barrierPicker: BarrierPickerView = {
+        let picker = BarrierPickerView()
         picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()
@@ -60,17 +67,18 @@ class SettingsViewController: UIViewController {
     @objc private func selectImage() {
         
         let alert = ActionSheet.showImagePicker { sourceType in
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.allowsEditing = true
-            if UIImagePickerController.isSourceTypeAvailable(sourceType) {
-                imagePicker.sourceType = sourceType
-                self.present(imagePicker, animated: true)
-            } else {
-                print("Ваша камера не работает")
+            DispatchQueue.main.async {
+                let imagePicker = UIImagePickerController()
+                imagePicker.delegate = self
+                imagePicker.allowsEditing = true
+                if UIImagePickerController.isSourceTypeAvailable(sourceType) {
+                    imagePicker.sourceType = sourceType
+                    self.present(imagePicker, animated: true)
+                } else {
+                    print("Ваша камера не работает")
+                }
             }
         }
-        
         present(alert, animated: true)
     }
     
@@ -83,33 +91,36 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController {
     private func setupUI() {
-        view.backgroundColor = AppColors.backgroundColor
+        view.backgroundColor = AppResources.AppScreenUIColors.backgroundColor
         view.addSubview(imageView)
         view.addSubview(userName)
         view.addSubview(carPicker)
-        
-//        if let imageData: Data = db.read(dataType: .avatar) {
-//            let stored = UIImage(data: imageData)
-//            imageView.image = stored
-//        }
+        view.addSubview(barrierPicker)
         
         if let image: UIImage = db.read(dataType: .avatar) {
             imageView.image = image
         }
         
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: AppConstraints.topAvatar),
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstraints.leadingAvatar),
-            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppConstraints.trailingAvatar),
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
-            userName.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: AppConstraints.topAvatar),
-            userName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppConstraints.leadingAvatar),
-            userName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppConstraints.trailingAvatar),
+            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: AppResources.AppConstraints.SettingsScreen.Image.top),
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppResources.AppConstraints.SettingsScreen.Image.leading),
+            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppResources.AppConstraints.SettingsScreen.Image.trailing),
+            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
             
-            carPicker.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 16),
-            carPicker.leadingAnchor.constraint(equalTo: userName.leadingAnchor, constant: 0),
-            carPicker.trailingAnchor.constraint(equalTo: userName.trailingAnchor, constant: 0),
-            carPicker.heightAnchor.constraint(equalToConstant: 100)
+            userName.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: AppResources.AppConstraints.SettingsScreen.Name.top),
+            userName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppResources.AppConstraints.SettingsScreen.Name.leading),
+            userName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppResources.AppConstraints.SettingsScreen.Name.trailing),
+            
+            carPicker.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: AppResources.AppConstraints.SettingsScreen.CarPicker.top),
+            carPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            carPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            carPicker.heightAnchor.constraint(equalToConstant: AppResources.AppConstraints.SettingsScreen.CarPicker.height),
+            
+            barrierPicker.topAnchor.constraint(equalTo: carPicker.bottomAnchor, constant: AppResources.AppConstraints.SettingsScreen.BarrierPicker.top),
+            barrierPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            barrierPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            barrierPicker.heightAnchor.constraint(equalToConstant: AppResources.AppConstraints.SettingsScreen.BarrierPicker.height),
+            barrierPicker.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
@@ -125,20 +136,17 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
         if let pickedImage = info[.originalImage] as? UIImage {
             imageView.image = pickedImage
             
-//            if let imageData = pickedImage.pngData() {
-//                db.save(dataType: .avatar, data: imageData)
-//            }
-            
             db.save(dataType: .avatar, data: pickedImage)
         }
         picker.dismiss(animated: true)
     }
 }
 
+// MARK: - UItextField delegate
+
 extension SettingsViewController: UITextFieldDelegate {
     private func setupTextField() {
-        
-        let name: String = db.read(dataType: .name) ?? "Username"
+        let name: String = db.read(dataType: .name) ?? AppResources.AppStringsConstants.DataBase.defaultName
         userName.text = name
     }
     

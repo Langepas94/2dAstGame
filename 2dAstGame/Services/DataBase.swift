@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 protocol DataBaseProtocol {
-    func save<T>(dataType: UserDefaultsKeys, data: T)
-    func read<T>(dataType: UserDefaultsKeys) -> T?
+    func save<T>(dataType: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys, data: T)
+    func read<T>(dataType: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys) -> T?
 }
 
 class DataBase: DataBaseProtocol {
@@ -19,36 +19,40 @@ class DataBase: DataBaseProtocol {
     
     // MARK: Save
     
-    func save<T>(dataType: UserDefaultsKeys, data: T) {
+    func save<T>(dataType: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys, data: T) {
         
         switch dataType {
         case .name:
-            UserDefaults.standard.setValue(data, forKey: UserDefaultsKeys.name.rawValue)
+            UserDefaults.standard.setValue(data, forKey: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.name.rawValue)
         case .avatar:
             if let image = data as? UIImage {
                 fileManagerWorker.saveImage(image)
             }
         case .selectedCar:
-            UserDefaults.standard.setValue(data, forKey: UserDefaultsKeys.selectedCar.rawValue)
+            UserDefaults.standard.setValue(data, forKey: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.selectedCar.rawValue)
         case .records:
             if let score = data as? ScoreModel {
                 fileManagerWorker.saveRecords(score)
             }
+        case .selectedBarrier:
+            UserDefaults.standard.setValue(data, forKey: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.selectedBarrier.rawValue)
         }
     }
     // MARK: Read
     
-    func read<T>(dataType: UserDefaultsKeys) -> T? {
+    func read<T>(dataType: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys) -> T? {
         
         switch dataType {
         case .name:
-            return UserDefaults.standard.string(forKey: UserDefaultsKeys.name.rawValue) as? T
+            return UserDefaults.standard.string(forKey: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.name.rawValue) as? T ?? AppResources.AppStringsConstants.DataBase.defaultName as? T
         case .avatar:
             return fileManagerWorker.loadImage() as? T
         case .selectedCar:
-            return UserDefaults.standard.string(forKey: UserDefaultsKeys.selectedCar.rawValue) as? T
+            return UserDefaults.standard.string(forKey: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.selectedCar.rawValue) as? T ?? "car1" as? T
         case .records:
-           return fileManagerWorker.loadRecords() as? T
+            return fileManagerWorker.loadRecords() as? T
+        case .selectedBarrier:
+            return UserDefaults.standard.string(forKey: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.selectedBarrier.rawValue) as? T ?? "barrier1" as? T
         }
     }
 }

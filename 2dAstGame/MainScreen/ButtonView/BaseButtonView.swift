@@ -10,9 +10,9 @@ import UIKit
 class BaseButtonView: UIButton {
     
     private func setupAppearance() {
-        backgroundColor = AppColors.buttonBackground
-        setTitleColor(AppColors.buttonTitle, for: .normal)
-        titleLabel?.font = AppFonts.buttonFont
+        backgroundColor = AppResources.AppScreenUIColors.backgroundColor
+        setTitleColor(AppResources.AppScreenUIColors.buttonTitle, for: .normal)
+        titleLabel?.font = AppResources.AppFonts.buttonFont
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 20
     }
@@ -21,8 +21,6 @@ class BaseButtonView: UIButton {
         setTitle(title, for: .normal)
     }
     
-    
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupAppearance()

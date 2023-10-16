@@ -11,7 +11,7 @@ class RecordTableViewCell: UITableViewCell {
     
     static let reuseID = String(describing: RecordTableViewCell.self)
     
-    // MARK: - Variables
+    // MARK: - Elements
     
     private var userImage: UIImageView = {
         let image = UIImageView()
@@ -25,54 +25,60 @@ class RecordTableViewCell: UITableViewCell {
     private var userName: UILabel = {
         let name = UILabel()
         name.translatesAutoresizingMaskIntoConstraints = false
-        name.textColor = AppColors.mainText
-        name.font = AppFonts.cellFont
+        name.textColor = AppResources.AppScreenUIColors.mainText
+        name.font = AppResources.AppFonts.cellFont
         return name
     }()
     
     private var userRecord: UILabel = {
-        let name = UILabel()
-        name.translatesAutoresizingMaskIntoConstraints = false
-        name.textColor = AppColors.mainText
-        name.font = AppFonts.cellFont
-        return name
+        let record = UILabel()
+        record.translatesAutoresizingMaskIntoConstraints = false
+        record.textColor = AppResources.AppScreenUIColors.mainText
+        record.font = AppResources.AppFonts.cellFont
+        return record
     }()
     
     // MARK: - Flow
     
     func setupUI() {
-
+        
         contentView.addSubview(userImage)
         contentView.addSubview(userName)
         contentView.addSubview(userRecord)
         
-                NSLayoutConstraint.activate([
-                    userImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-                    userImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-                    userImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
-                    
-                    userName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-                    userName.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: -5),
-                    userName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
-                    userName.centerYAnchor.constraint(equalTo: userImage.centerYAnchor),
-                    
-                    userRecord.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-                    userRecord.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
-                    userRecord.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
-                    userRecord.centerYAnchor.constraint(equalTo: userImage.centerYAnchor),
-                    
-                ])
+        NSLayoutConstraint.activate([
+            userImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: AppResources.AppConstraints.Cell.Image.top),
+            userImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            userImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: AppResources.AppConstraints.Cell.Image.bottom),
+            userImage.widthAnchor.constraint(equalToConstant: AppResources.AppConstraints.Cell.Image.width),
+            
+            userName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: AppResources.AppConstraints.Cell.Name.top),
+            userName.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: AppResources.AppConstraints.Cell.Name.leading),
+            userName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: AppResources.AppConstraints.Cell.Name.bottom),
+            userName.centerYAnchor.constraint(equalTo: userImage.centerYAnchor),
+            
+            userRecord.topAnchor.constraint(equalTo: contentView.topAnchor, constant: AppResources.AppConstraints.Cell.Record.top),
+            userRecord.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: AppResources.AppConstraints.Cell.Record.trailing),
+            userRecord.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: AppResources.AppConstraints.Cell.Record.bottom),
+            userRecord.centerYAnchor.constraint(equalTo: userImage.centerYAnchor),
+            
+        ])
     }
+    
+    //MARK: - Configure
     
     func configure(_ recordsData: ScoreModel) {
         userName.text = recordsData.name
-        userRecord.text = String(recordsData.score)
+        userRecord.text = String(recordsData.score ?? 0)
         
-        if let img = recordsData.userImg {
+        let img = recordsData.userImg ?? AppResources.AppStringsConstants.Images.defaultPerson
+        
+        if  img == AppResources.AppStringsConstants.Images.defaultPerson  {
+            userImage.image = UIImage(named: img)
+            
+        } else {
             userImage.image = UIImage(contentsOfFile: img)
         }
-        
-        userImage.layoutIfNeeded()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -8,11 +8,17 @@
 import Foundation
 
 struct ScoreModel: Codable {
-    var name: String
-    var score: Int
+    var name: String = ""
+    var score: Int = 0
     var userImg: String?
     
     mutating func clear() {
-        score = 0
+        score = AppResources.GameConstants.defaultScore
+    }
+}
+
+extension ScoreModel: Hashable {
+    func hash(into hasher: inout Hasher) {
+        
     }
 }

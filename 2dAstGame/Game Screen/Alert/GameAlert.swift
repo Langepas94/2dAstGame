@@ -15,10 +15,10 @@ class GameAlert {
            
            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
            
-           let exitAction = UIAlertAction(title: "Выйти", style: .default, handler: exitAction)
+           let exitAction = UIAlertAction(title: AppResources.GameConstants.GameAlertTexts.exit, style: .default, handler: exitAction)
            alertController.addAction(exitAction)
            
-           let restartAction = UIAlertAction(title: "Restart game", style: .destructive, handler: restartAction)
+           let restartAction = UIAlertAction(title: AppResources.GameConstants.GameAlertTexts.restart, style: .destructive, handler: restartAction)
            alertController.addAction(restartAction)
            
            viewController.present(alertController, animated: true, completion: nil)

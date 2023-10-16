@@ -11,27 +11,27 @@ class MainScreenViewController: UIViewController {
     
     private lazy var startButton: BaseButtonView = {
         let button = BaseButtonView()
-        button.frame.size = CGSize(width: 100, height: 100)
+        button.frame.size = AppResources.AppConstraints.MainScreen.BaseButton.size
         button.center = view.center
-        button.setTitle("Start")
+        button.setTitle(AppResources.AppStringsConstants.BaseButton.start)
         button.addTarget(self, action: #selector(gameScreen), for: .touchUpInside)
         return button
     }()
     
     private lazy var recordsButton: BaseButtonView = {
         let button = BaseButtonView()
-        button.frame.size = CGSize(width: 100, height: 100)
+        button.frame.size = AppResources.AppConstraints.MainScreen.BaseButton.size
         button.center = view.center
-        button.setTitle("Records")
+        button.setTitle(AppResources.AppStringsConstants.BaseButton.records)
         button.addTarget(self, action: #selector(recordsScreen), for: .touchUpInside)
         return button
     }()
     
     private lazy var settingsButton: BaseButtonView = {
         let button = BaseButtonView()
-        button.frame.size = CGSize(width: 100, height: 100)
+        button.frame.size = AppResources.AppConstraints.MainScreen.BaseButton.size
         button.center = view.center
-        button.setTitle("Settings")
+        button.setTitle(AppResources.AppStringsConstants.BaseButton.settings)
         button.addTarget(self, action: #selector(settingsScreen), for: .touchUpInside)
         return button
     }()
@@ -73,12 +73,12 @@ class MainScreenViewController: UIViewController {
 extension MainScreenViewController {
     
     func setupUI() {
-        view.backgroundColor = AppColors.backgroundColor
+        view.backgroundColor = AppResources.AppScreenUIColors.backgroundColor
         view.addSubview(buttonsStackView)
         buttonsStackView.addArrangedSubview(startButton)
         buttonsStackView.addArrangedSubview(recordsButton)
         buttonsStackView.addArrangedSubview(settingsButton)
-        buttonsStackView.frame.size = CGSize(width: 200, height: 200)
+        buttonsStackView.frame.size = AppResources.AppConstraints.MainScreen.stackViewSize
         buttonsStackView.center = view.center
     }
 }
