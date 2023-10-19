@@ -14,8 +14,6 @@ class RecordsViewController: UIViewController {
     
     private var tableView: UITableView = {
         let table = UITableView()
-//        table.translatesAutoresizingMaskIntoConstraints = false
-
         table.showsVerticalScrollIndicator = false
         table.showsHorizontalScrollIndicator = false
         return table

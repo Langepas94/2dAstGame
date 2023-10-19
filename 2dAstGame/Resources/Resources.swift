@@ -54,12 +54,12 @@ enum AppResources {
             enum CarPicker {
                 static let top = CGFloat(6)
                
-                static let height = CGFloat(120)
+                static let height = CGFloat(160)
             }
             
             enum BarrierPicker {
                 static let top = CGFloat(6)
-                static let height = CGFloat(120)
+                static let height = CGFloat(160)
             }
         }
         
@@ -81,16 +81,17 @@ enum AppResources {
         }
         
         enum Cell {
+            
             enum Image {
                 static let top = CGFloat(5)
-                static let leading = CGFloat(-5)
+                static let leading = CGFloat(5)
                 static let bottom = CGFloat(-5)
-                static let width = CGFloat(100)
+                static let width = CGFloat(50)
             }
             
             enum Name {
                 static let top = CGFloat(5)
-                static let leading = CGFloat(-5)
+                static let leading = CGFloat(8)
                 static let bottom = CGFloat(-5)
             }
             
@@ -160,6 +161,8 @@ enum AppResources {
     
     enum GameConstants {
         static let defaultScore = 0
+        
+        // GAME SPEED
         static let gameTimer = CGFloat(2)
         
         enum Player {
@@ -194,7 +197,7 @@ enum AppResources {
             enum Values {
                 static let roadLineWidth = CGFloat(6)
                 static let lineDash: [NSNumber] = [26,8]
-                static let roadSpeed = 0.23
+                static let roadSpeed = AppResources.GameConstants.gameTimer / 10
                 static let roadsideWidth = CGFloat(30)
             }
         }

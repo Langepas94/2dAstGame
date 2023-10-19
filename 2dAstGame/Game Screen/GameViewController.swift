@@ -12,7 +12,7 @@ class GameViewController: UIViewController {
     // MARK: - Variables
     
     private let roadSeparatorView: RoadSeparatorAnimated = {
-        let road = RoadSeparatorAnimated(frame: .zero, speed: AppResources.GameConstants.RoadConstants.Values.roadSpeed)
+        let road = RoadSeparatorAnimated()
         road.translatesAutoresizingMaskIntoConstraints = false
         return road
     }()
@@ -52,8 +52,8 @@ class GameViewController: UIViewController {
         return gameScore
     }()
     
-    private var timer: Timer?
-    private var gameAlert = GameAlert()
+    private var buttonSpeedTimer: Timer?
+    private var gameAlert: GameAlert = GameAlert()
     private var gametimer: Timer?
     private var displayLink: CADisplayLink?
     private var gameScore: ScoreModel = ScoreModel()
@@ -65,19 +65,15 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         setupRoad()
         gameUISetup()
-        
+        gameStarter()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         invalidateAllTimers()
+        stopAllAnimations()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        displayLinkActive()
-        gameStarter()
-    }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -167,16 +163,17 @@ extension GameViewController {
     
     func gameStarter() {
         gameScore.clear()
+        self.displayLinkActive()
         self.updateScoreLabel()
-        gametimer = Timer.scheduledTimer(withTimeInterval: AppResources.GameConstants.gameTimer, repeats: true, block: { timer in
-            self.animationsTimer()
-            self.updateScoreLabel()
+        gametimer = Timer.scheduledTimer(withTimeInterval: AppResources.GameConstants.gameTimer, repeats: true, block: { [weak self] timer in
+            self?.animationsTimer()
+            self?.updateScoreLabel()
         })
     }
     
     func displayLinkActive() {
         displayLink = CADisplayLink(target: self, selector: #selector(crashChecker))
-        displayLink?.add(to: .main, forMode: .default)
+        displayLink?.add(to: .current, forMode: .common)
     }
     
     func updateScoreLabel() {
@@ -187,26 +184,35 @@ extension GameViewController {
     func stopAllAnimations() {
         barrierView.layer.removeAllAnimations()
         roadSeparatorView.stopAllAnimations()
+        playerView.stopAnimating()
+        playerView.layer.removeAllAnimations()
     }
     
     func invalidateAllTimers() {
-        displayLink?.remove(from: .current, forMode: .common)
-        displayLink?.invalidate()
-        displayLink = nil
-        timer?.invalidate()
-        timer = nil
+        
+        buttonSpeedTimer?.invalidate()
+        buttonSpeedTimer = nil
         gametimer?.invalidate()
         gametimer = nil
+        
+        DispatchQueue.main.async {
+            self.displayLink?.remove(from: .current, forMode: .common)
+            self.displayLink?.invalidate()
+            self.displayLink = nil
+        }
     }
     
     func gameAlertViewPresent() {
-        self.db.save(dataType: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.records, data: self.gameScore)
-        gameAlert.showAlert(title: AppResources.GameConstants.GameAlertTexts.title, message: AppResources.GameConstants.GameAlertTexts.message, viewController: self) { [weak self] action in
-            self?.dismiss(animated: true)
-        } restartAction: { [weak self] action in
-            self?.displayLinkActive()
-            self?.gameStarter()
-            self?.resetMovingViewPosition()
+        
+        
+        gameAlert.showAlert(title: AppResources.GameConstants.GameAlertTexts.title, message: AppResources.GameConstants.GameAlertTexts.message, viewController: self) { action in
+            self.db.save(dataType: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.records, data: self.gameScore)
+            self.dismiss(animated: true)
+        } restartAction: { _ in
+            self.db.save(dataType: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.records, data: self.gameScore)
+            self.resetMovingViewPosition()
+            self.gameStarter()
+           
         }
     }
     
@@ -231,7 +237,7 @@ extension GameViewController {
         let stoneFrame = barrierView.layer.presentation()?.frame ?? barrierView.frame
         
         if movingFrame.intersects(stoneFrame) || movingFrame.intersects(roadSides.0) || movingFrame.intersects(roadSides.1)  {
-            barrierView.frame = stoneFrame
+//            barrierView.frame = stoneFrame
             stopAllAnimations()
             invalidateAllTimers()
             gameAlertViewPresent()
@@ -245,27 +251,22 @@ extension GameViewController {
         self.barrierView.frame.origin = .init(x: .random(in: framesEdges.0...framesEdges.1 - AppResources.GameConstants.Barrier.FramesConstants.frameSize.width), y: -AppResources.GameConstants.Barrier.FramesConstants.frameSize.width)
         UIView.animate(withDuration: AppResources.GameConstants.gameTimer, delay: 0, options: [.curveLinear], animations: {
             self.barrierView.frame.origin.y = self.view.frame.maxY +  AppResources.GameConstants.Barrier.FramesConstants.frameSize.height
-            
         })
-        
-        if gametimer == nil {
-            barrierView.layer.removeAllAnimations()
-        }
     }
     
     // MARK: Button's and actions
     
     @objc private func buttonLeftLongPressed() {
-        timer = Timer.scheduledTimer(timeInterval: AppResources.GameConstants.Buttons.buttonSpeed, target: self, selector: #selector(moveViewLeft), userInfo: nil, repeats: true)
+        buttonSpeedTimer = Timer.scheduledTimer(timeInterval: AppResources.GameConstants.Buttons.buttonSpeed, target: self, selector: #selector(moveViewLeft), userInfo: nil, repeats: true)
     }
     
     @objc private func buttonRightLongPressed() {
-        timer = Timer.scheduledTimer(timeInterval: AppResources.GameConstants.Buttons.buttonSpeed, target: self, selector: #selector(moveViewRight), userInfo: nil, repeats: true)
+        buttonSpeedTimer = Timer.scheduledTimer(timeInterval: AppResources.GameConstants.Buttons.buttonSpeed, target: self, selector: #selector(moveViewRight), userInfo: nil, repeats: true)
     }
     
     @objc private func buttonReleased() {
-        timer?.invalidate()
-        timer = nil
+        buttonSpeedTimer?.invalidate()
+        buttonSpeedTimer = nil
     }
     
     @objc private func moveViewLeft() {

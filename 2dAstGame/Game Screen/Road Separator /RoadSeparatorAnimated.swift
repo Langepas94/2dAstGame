@@ -13,7 +13,7 @@ class RoadSeparatorAnimated: UIView {
     private let roadLayer = CAShapeLayer()
     private let separatorLayer = CAShapeLayer()
     private let separatorAnimation = CABasicAnimation(keyPath: "lineDashPhase")
-    private var speed: CFTimeInterval?
+    private var speed: CFTimeInterval = AppResources.GameConstants.RoadConstants.Values.roadSpeed
 
     // MARK: Stop All
     
@@ -53,14 +53,13 @@ class RoadSeparatorAnimated: UIView {
         separatorPath.addLine(to: CGPoint(x: bounds.width / 2, y: bounds.height))
         separatorLayer.path = separatorPath.cgPath
         
-        setupLayers(speed ?? 0.2)
+        setupLayers(speed)
     }
     
     // MARK: - Init's
     
-    init(frame: CGRect, speed: CFTimeInterval) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
-        self.speed = speed
         setupLayers(speed)
     }
     

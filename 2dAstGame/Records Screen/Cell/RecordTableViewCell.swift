@@ -48,7 +48,7 @@ class RecordTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             userImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: AppResources.AppConstraints.Cell.Image.top),
-            userImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            userImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: AppResources.AppConstraints.Cell.Image.leading),
             userImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: AppResources.AppConstraints.Cell.Image.bottom),
             userImage.widthAnchor.constraint(equalToConstant: AppResources.AppConstraints.Cell.Image.width),
             
@@ -69,7 +69,7 @@ class RecordTableViewCell: UITableViewCell {
     
     func configure(_ recordsData: ScoreModel) {
         userName.text = recordsData.name
-        userRecord.text = String(recordsData.score ?? 0)
+        userRecord.text = String(recordsData.score)
         
         let img = recordsData.userImg ?? AppResources.AppStringsConstants.Images.defaultPerson
         

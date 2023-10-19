@@ -107,7 +107,6 @@
 		44059C572ACAAA890090AA0E /* Game Screen */ = {
 			isa = PBXGroup;
 			children = (
-				4488ADFB2AD6F20B00912F66 /* Model */,
 				4443A4202ACEC4C900C693F4 /* Roadside Layer */,
 				445378952ACEB9E70038CB54 /* Road Separator  */,
 				445378922ACD8C820038CB54 /* Alert */,
@@ -152,6 +151,7 @@
 		4443FFAA2AC577760079510A /* 2dAstGame */ = {
 			isa = PBXGroup;
 			children = (
+				4488ADFB2AD6F20B00912F66 /* Model */,
 				4488AE052AD96F5D00912F66 /* Extension */,
 				44059C5E2ACAB0120090AA0E /* Services */,
 				44059C572ACAAA890090AA0E /* Game Screen */,

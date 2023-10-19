@@ -195,5 +195,117 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DC557B6C-150F-417D-88F5-854678937EE2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "2dAstGame/Game Screen/GameViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "resetMovingViewPosition()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F870A7DE-A57A-442F-BABB-E890944A1610"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "2dAstGame/Game Screen/GameViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "232"
+            endingLineNumber = "232"
+            landmarkName = "crashChecker()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "51360C0F-D99F-429F-8E73-F9284919DD3D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "2dAstGame/Game Screen/GameViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "stopAllAnimations()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "98E0197A-CE6F-4FFB-94F9-727ABBB53887"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "2dAstGame/Game Screen/GameViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "gameAlertViewPresent()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AF47FA55-79A9-4CE6-9FCC-76C36EE8C6F3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "2dAstGame/Services/FileManager/FileManagerWorker.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "loadRecords()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AF47FA55-79A9-4CE6-9FCC-76C36EE8C6F3 - d75005ce00574416"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_dAstGame.FileManagerWorker.loadRecords() -&gt; Swift.Optional&lt;Swift.Array&lt;_dAstGame.ScoreModel&gt;&gt;"
+                  moduleName = "2dAstGame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/Documents/2dAstGame/2dAstGame/Services/FileManager/FileManagerWorker.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "884">
+               </Location>
+               <Location
+                  uuid = "AF47FA55-79A9-4CE6-9FCC-76C36EE8C6F3 - d75005ce00574416"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_dAstGame.FileManagerWorker.loadRecords() -&gt; Swift.Optional&lt;Swift.Array&lt;_dAstGame.ScoreModel&gt;&gt;"
+                  moduleName = "2dAstGame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/Documents/2dAstGame/2dAstGame/Services/FileManager/FileManagerWorker.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "804">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

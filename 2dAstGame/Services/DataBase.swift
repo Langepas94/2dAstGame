@@ -48,11 +48,11 @@ class DataBase: DataBaseProtocol {
         case .avatar:
             return fileManagerWorker.loadImage() as? T
         case .selectedCar:
-            return UserDefaults.standard.string(forKey: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.selectedCar.rawValue) as? T ?? "car1" as? T
+            return UserDefaults.standard.string(forKey: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.selectedCar.rawValue) as? T ?? AppResources.AppStringsConstants.DataBase.PickerData.Cars.car1 as? T
         case .records:
             return fileManagerWorker.loadRecords() as? T
         case .selectedBarrier:
-            return UserDefaults.standard.string(forKey: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.selectedBarrier.rawValue) as? T ?? "barrier1" as? T
+            return UserDefaults.standard.string(forKey: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.selectedBarrier.rawValue) as? T ?? AppResources.AppStringsConstants.DataBase.PickerData.Barriers.barrier1 as? T
         }
     }
 }
