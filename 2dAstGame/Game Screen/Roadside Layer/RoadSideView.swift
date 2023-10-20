@@ -39,10 +39,12 @@ class RoadSideView: UIView {
     // MARK: setup UI
     
     private func setupSideViews() {
+        backgroundColor = .gray.withAlphaComponent(0.3)
         leftSide.backgroundColor = .orange
         rightSide.backgroundColor = .orange
         addSubview(leftSide)
         addSubview(rightSide)
+       
     }
     
     override func layoutSubviews() {

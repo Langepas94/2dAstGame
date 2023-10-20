@@ -12,9 +12,13 @@ class BaseButtonView: UIButton {
     private func setupAppearance() {
         backgroundColor = AppResources.AppScreenUIColors.backgroundColor
         setTitleColor(AppResources.AppScreenUIColors.buttonTitle, for: .normal)
-        titleLabel?.font = AppResources.AppFonts.buttonFont
+        titleLabel?.font = AppResources.AppFonts.pixelFont
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 20
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.6
+        layer.shadowOffset = CGSize(width: 3, height: 3)
+        layer.shadowRadius = 4
     }
     
     func setTitle(_ title: String) {

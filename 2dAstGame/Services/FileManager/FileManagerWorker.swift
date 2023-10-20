@@ -49,19 +49,26 @@ class FileManagerWorker {
                 records = try JSONDecoder().decode([ScoreModel].self, from: data)
             }
             
-            var recordWriting = record
-            
-            if recordWriting.userImg == AppResources.AppStringsConstants.Images.defaultPerson {
-                records.append(recordWriting)
-            } else {
-                recordWriting.userImg = imagePath
-                records.append(recordWriting)
-                saveRecordAvatar(recordWriting.name)
+            let recordExists = records.contains { existingRecord in
+                return existingRecord.name == record.name && existingRecord.score == record.score
             }
             
-            let encodedRecords = try JSONEncoder().encode(records)
-            try encodedRecords.write(to: fileURL)
-            
+            if !recordExists {
+                var recordWriting = record
+                
+                if recordWriting.userImg == AppResources.AppStringsConstants.Images.defaultPerson {
+                    records.append(recordWriting)
+                } else {
+                    recordWriting.userImg = imagePath
+                    records.append(recordWriting)
+                    saveRecordAvatar(recordWriting.name)
+                }
+                
+                let encodedRecords = try JSONEncoder().encode(records)
+                try encodedRecords.write(to: fileURL)
+            } else {
+                print("Данный рекорд уже существует и не будет сохранен")
+            }
         } catch {
             print("Ошибка при сохранении записей: \(error)")
         }

@@ -14,58 +14,10 @@
             filePath = "2dAstGame/Services/FileManager/FileManagerWorker.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "loadRecords()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F4E6D803-7321-4176-A58C-0DB8C9ABB8BD"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "2dAstGame/Settings Screen/PickerView/BasePickerView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "selectedLeft()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "F4E6D803-7321-4176-A58C-0DB8C9ABB8BD - d6d97d432377e2ba"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "_dAstGame.BasePickerView.selectedLeft() -&gt; ()"
-                  moduleName = "2dAstGame"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/artemturmorezov/Documents/2dAstGame/2dAstGame/Settings%20Screen/PickerView/BasePickerView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "93"
-                  endingLineNumber = "93"
-                  offsetFromSymbolStart = "1056">
-               </Location>
-               <Location
-                  uuid = "F4E6D803-7321-4176-A58C-0DB8C9ABB8BD - d6d97d432377e2ba"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "_dAstGame.BasePickerView.selectedLeft() -&gt; ()"
-                  moduleName = "2dAstGame"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/artemturmorezov/Documents/2dAstGame/2dAstGame/Settings%20Screen/PickerView/BasePickerView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "93"
-                  endingLineNumber = "93"
-                  offsetFromSymbolStart = "1012">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -78,8 +30,8 @@
             filePath = "2dAstGame/Services/FileManager/FileManagerWorker.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "loadRecords()"
             landmarkType = "7">
             <Locations>
@@ -126,8 +78,8 @@
             filePath = "2dAstGame/Services/FileManager/FileManagerWorker.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "loadRecords()"
             landmarkType = "7">
             <Locations>
@@ -205,8 +157,8 @@
             filePath = "2dAstGame/Game Screen/GameViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
             landmarkName = "resetMovingViewPosition()"
             landmarkType = "7">
          </BreakpointContent>
@@ -221,8 +173,8 @@
             filePath = "2dAstGame/Game Screen/GameViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "crashChecker()"
             landmarkType = "7">
          </BreakpointContent>
@@ -237,8 +189,8 @@
             filePath = "2dAstGame/Game Screen/GameViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "stopAllAnimations()"
             landmarkType = "7">
          </BreakpointContent>
@@ -253,8 +205,8 @@
             filePath = "2dAstGame/Game Screen/GameViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "gameAlertViewPresent()"
             landmarkType = "7">
          </BreakpointContent>
@@ -269,8 +221,8 @@
             filePath = "2dAstGame/Services/FileManager/FileManagerWorker.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "loadRecords()"
             landmarkType = "7">
             <Locations>
@@ -303,6 +255,102 @@
                   startingLineNumber = "89"
                   endingLineNumber = "89"
                   offsetFromSymbolStart = "804">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EBC5D812-6695-4F3F-A0FD-03BAEA54230C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "2dAstGame/Services/DataBase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "read(dataType:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6BFECE4E-83E2-46CD-8306-C9E2B15C7106"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "2dAstGame/Game Screen/GameViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "setupMovingView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "45EA3139-BE33-4407-89C1-ECB3B419CEB8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "2dAstGame/Settings Screen/PickerView/BasePickerView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "selectedLeft()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "58D98FF2-D0A5-48A0-88B7-F0620D83E5A0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "2dAstGame/Settings Screen/PickerView/BasePickerView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "selectedLeft()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "58D98FF2-D0A5-48A0-88B7-F0620D83E5A0 - d6d97d432377e336"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_dAstGame.BasePickerView.selectedLeft() -&gt; ()"
+                  moduleName = "2dAstGame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/Documents/2dAstGame/2dAstGame/Settings%20Screen/PickerView/BasePickerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "58D98FF2-D0A5-48A0-88B7-F0620D83E5A0 - d6d97d432377e336"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "_dAstGame.BasePickerView.selectedLeft() -&gt; ()"
+                  moduleName = "2dAstGame"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/artemturmorezov/Documents/2dAstGame/2dAstGame/Settings%20Screen/PickerView/BasePickerView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "68">
                </Location>
             </Locations>
          </BreakpointContent>

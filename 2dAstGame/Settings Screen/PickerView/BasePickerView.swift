@@ -48,6 +48,7 @@ class BasePickerView: UIView {
     }
     
     func setupUI() {
+        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stackView)
         baseImageView.frame.size = AppResources.AppConstraints.SettingsScreen.pickerSize
@@ -60,7 +61,6 @@ class BasePickerView: UIView {
         baseImageView.contentMode = .scaleAspectFit
         
         baseImageView.image = array[currentIndex]
-        
         
         leftButton.setTitle("<", for: .normal)
         leftButton.titleLabel?.font = AppResources.AppFonts.arrowSize
@@ -89,12 +89,12 @@ class BasePickerView: UIView {
         currentIndex = (currentIndex - 1 + array.count) % array.count
         baseImageView.image = array[currentIndex]
         let name = getItem(currentIndex)
-        print(userDefaultsKey)
+        
         if userDefaultsKey == AppResources.AppStringsConstants.DataBase.PickerData.Barriers.barrierIndex {
             db.save(dataType: .selectedBarrier, data: name)
-            print(userDefaultsKey)
+            
         } else if userDefaultsKey == AppResources.AppStringsConstants.DataBase.PickerData.Cars.carIndex {
-            print(userDefaultsKey)
+            
             db.save(dataType: .selectedCar, data: name)
         }
     }
@@ -107,9 +107,9 @@ class BasePickerView: UIView {
         
         if userDefaultsKey == AppResources.AppStringsConstants.DataBase.PickerData.Barriers.barrierIndex{
             db.save(dataType: .selectedBarrier, data: name)
-            print(userDefaultsKey)
+            
         } else if userDefaultsKey == AppResources.AppStringsConstants.DataBase.PickerData.Cars.carIndex {
-            print(userDefaultsKey)
+            
             db.save(dataType: .selectedCar, data: name)
         }
     }

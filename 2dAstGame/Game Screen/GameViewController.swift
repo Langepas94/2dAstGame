@@ -33,12 +33,14 @@ class GameViewController: UIViewController {
     
     private let playerView: UIImageView = {
         let player = UIImageView()
+        player.contentMode = .scaleAspectFit
         return player
     }()
     
     
     private let barrierView: UIImageView = {
         let barrier = UIImageView()
+        barrier.contentMode = .scaleAspectFit
         return barrier
     }()
     
@@ -132,7 +134,7 @@ extension GameViewController {
     }
 }
 
-// MARK: - Moving view Setup
+// MARK: - Player view Setup
 extension GameViewController {
     
     func setupMovingView() {
@@ -143,6 +145,7 @@ extension GameViewController {
         if let image: String = db.read(dataType: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.selectedCar)  {
             playerView.image = UIImage(named: image)
         }
+        
     }
 }
 
@@ -204,7 +207,6 @@ extension GameViewController {
     
     func gameAlertViewPresent() {
         
-        
         gameAlert.showAlert(title: AppResources.GameConstants.GameAlertTexts.title, message: AppResources.GameConstants.GameAlertTexts.message, viewController: self) { action in
             self.db.save(dataType: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.records, data: self.gameScore)
             self.dismiss(animated: true)
@@ -212,7 +214,6 @@ extension GameViewController {
             self.db.save(dataType: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.records, data: self.gameScore)
             self.resetMovingViewPosition()
             self.gameStarter()
-           
         }
     }
     
@@ -237,7 +238,7 @@ extension GameViewController {
         let stoneFrame = barrierView.layer.presentation()?.frame ?? barrierView.frame
         
         if movingFrame.intersects(stoneFrame) || movingFrame.intersects(roadSides.0) || movingFrame.intersects(roadSides.1)  {
-//            barrierView.frame = stoneFrame
+            barrierView.frame = stoneFrame
             stopAllAnimations()
             invalidateAllTimers()
             gameAlertViewPresent()

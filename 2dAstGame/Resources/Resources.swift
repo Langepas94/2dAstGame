@@ -11,11 +11,12 @@ import UIKit
 enum AppResources {
     
     enum AppScreenUIColors {
-        
-        static let backgroundColor = UIColor.yellow
+        static let backgroundColor = UIColor(red: 248/255, green: 175/255, blue: 74/255, alpha: 1.0)
         static let buttonTitle = UIColor.black
         static let buttonBackground = UIColor.green
         static let mainText = UIColor.black
+        static let backgroundImage = "wallpaper"
+        static let backgroundSecondImage = "wallbg"
     }
 
     enum AppFonts {
@@ -24,16 +25,13 @@ enum AppResources {
         static let cellFont = UIFont.systemFont(ofSize: 25)
         static let gameScore = UIFont.systemFont(ofSize: 25)
         static let arrowSize = UIFont.systemFont(ofSize: 30)
+        static let pixelFont = UIFont(name: "FRM3216x16", size: 22)
     }
 
     enum AppConstraints {
         
         enum MainScreen {
             static let stackViewSize = CGSize(width: 200, height: 200)
-            enum BaseButton {
-                static let size = CGSize(width: 100, height: 100)
-            }
-           
         }
         
         enum SettingsScreen {
@@ -126,12 +124,14 @@ enum AppResources {
             
             enum PickerData {
                 enum Cars: String {
-                    case car1 = "car1"
-                    case car2 = "car2"
-                    case car3 = "car3"
+                    case car1 = "cars/car1"
+                    case car2 = "cars/car2"
+                    case car3 = "cars/car3"
+                    case car4 = "cars/car4"
+                    case car5 = "cars/car5"
                     
                     static var allCases: [String] {
-                        return [car1.rawValue, car2.rawValue, car3.rawValue]
+                        return [car1.rawValue, car2.rawValue, car3.rawValue, car4.rawValue, car5.rawValue]
                     }
                     
                     static let carIndex = "selectedCarIndex"
@@ -139,12 +139,13 @@ enum AppResources {
                 
                 enum Barriers: String {
                     
-                        case barrier1 = "barrier1"
-                        case barrier2 = "barrier2"
-                        case barrier3 = "barrier3"
+                        case barrier1 = "stone1"
+                        case barrier2 = "stone2"
+                        case barrier3 = "stone3"
+                        case barrier4 = "stone4"
                         
                         static var allCases: [String] {
-                            return [barrier1.rawValue, barrier2.rawValue, barrier3.rawValue]
+                            return [barrier1.rawValue, barrier2.rawValue, barrier3.rawValue, barrier4.rawValue]
                         }
                     
                     static let barrierIndex = "selectedBarrierIndex"

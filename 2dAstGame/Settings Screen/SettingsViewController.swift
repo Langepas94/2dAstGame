@@ -41,6 +41,12 @@ class SettingsViewController: UIViewController {
         return picker
     }()
     
+    private let backgroundImage: UIImageView = {
+        let bg = UIImageView(image: UIImage(named: AppResources.AppScreenUIColors.backgroundSecondImage))
+        bg.contentMode = .scaleAspectFill
+        return bg
+    }()
+    
     private let db = DataBase()
     
     override func viewDidLoad() {
@@ -91,11 +97,13 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController {
     private func setupUI() {
-        view.backgroundColor = AppResources.AppScreenUIColors.backgroundColor
         view.addSubview(imageView)
         view.addSubview(userName)
         view.addSubview(carPicker)
         view.addSubview(barrierPicker)
+        backgroundImage.frame = view.frame
+        view.addSubview(backgroundImage)
+        view.sendSubviewToBack(backgroundImage)
         
         if let image: UIImage = db.read(dataType: .avatar) {
             imageView.image = image
