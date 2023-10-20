@@ -15,7 +15,7 @@ class BaseButtonView: UIButton {
         titleLabel?.font = AppResources.AppFonts.pixelFont
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 20
-        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowColor = AppResources.AppScreenUIColors.buttonTitle.cgColor
         layer.shadowOpacity = 0.6
         layer.shadowOffset = CGSize(width: 3, height: 3)
         layer.shadowRadius = 4

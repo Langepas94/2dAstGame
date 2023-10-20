@@ -9,9 +9,8 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
-    private var imageView: UIImageView = {
+    private var avatarImageView: UIImageView = {
         let image = UIImageView()
-        image.backgroundColor = .orange
         image.clipsToBounds = true
         image.isUserInteractionEnabled = true
         image.contentMode = .scaleAspectFill
@@ -24,7 +23,7 @@ class SettingsViewController: UIViewController {
         name.translatesAutoresizingMaskIntoConstraints = false
         name.textColor = AppResources.AppScreenUIColors.mainText
         name.textAlignment = .center
-        name.font = AppResources.AppFonts.usernameFont
+        name.font = AppResources.AppFonts.pixelUsernameFont
         name.adjustsFontSizeToFitWidth = true
         return name
     }()
@@ -43,7 +42,8 @@ class SettingsViewController: UIViewController {
     
     private let backgroundImage: UIImageView = {
         let bg = UIImageView(image: UIImage(named: AppResources.AppScreenUIColors.backgroundSecondImage))
-        bg.contentMode = .scaleAspectFill
+   
+        bg.contentMode = .center
         return bg
     }()
     
@@ -60,14 +60,15 @@ class SettingsViewController: UIViewController {
     // MARK - LayoutSubviews
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        imageView.layer.cornerRadius = imageView.frame.width / 2
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.width / 2
+        userName.underlined()
     }
     
     // MARK: - Flow
     
     private func gesturesSettings() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectImage))
-        imageView.addGestureRecognizer(tapGesture)
+        avatarImageView.addGestureRecognizer(tapGesture)
     }
     
     @objc private func selectImage() {
@@ -97,25 +98,26 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController {
     private func setupUI() {
-        view.addSubview(imageView)
+        view.addSubview(avatarImageView)
         view.addSubview(userName)
         view.addSubview(carPicker)
         view.addSubview(barrierPicker)
-        backgroundImage.frame = view.frame
+       
         view.addSubview(backgroundImage)
         view.sendSubviewToBack(backgroundImage)
         
         if let image: UIImage = db.read(dataType: .avatar) {
-            imageView.image = image
+            avatarImageView.image = image
         }
         
+        backgroundImage.frame = view.frame
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: AppResources.AppConstraints.SettingsScreen.Image.top),
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppResources.AppConstraints.SettingsScreen.Image.leading),
-            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppResources.AppConstraints.SettingsScreen.Image.trailing),
-            imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
+            avatarImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: AppResources.AppConstraints.SettingsScreen.Image.top),
+            avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppResources.AppConstraints.SettingsScreen.Image.leading),
+            avatarImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppResources.AppConstraints.SettingsScreen.Image.trailing),
+            avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
             
-            userName.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: AppResources.AppConstraints.SettingsScreen.Name.top),
+            userName.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: AppResources.AppConstraints.SettingsScreen.Name.top),
             userName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppResources.AppConstraints.SettingsScreen.Name.leading),
             userName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppResources.AppConstraints.SettingsScreen.Name.trailing),
             
@@ -130,6 +132,15 @@ extension SettingsViewController {
             barrierPicker.heightAnchor.constraint(equalToConstant: AppResources.AppConstraints.SettingsScreen.BarrierPicker.height),
             barrierPicker.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+        blurEffect()
+    }
+    
+    func blurEffect() {
+        let blurEffect = UIBlurEffect(style: .light)
+        let viewEffect = UIVisualEffectView(effect: blurEffect)
+        viewEffect.autoresizingMask = [.flexibleWidth,.flexibleHeight]
+        viewEffect.frame = backgroundImage.frame
+        backgroundImage.addSubview(viewEffect)
     }
 }
 
@@ -142,8 +153,7 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[.originalImage] as? UIImage {
-            imageView.image = pickedImage
-            
+            avatarImageView.image = pickedImage
             db.save(dataType: .avatar, data: pickedImage)
         }
         picker.dismiss(animated: true)

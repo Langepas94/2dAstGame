@@ -17,15 +17,18 @@ enum AppResources {
         static let mainText = UIColor.black
         static let backgroundImage = "wallpaper"
         static let backgroundSecondImage = "wallbg"
+        static let selectorNext = "SelectorArrows/next"
+        static let selectorPrevious = "SelectorArrows/previous"
     }
 
     enum AppFonts {
         static let buttonFont = UIFont.systemFont(ofSize: 23)
         static let usernameFont = UIFont.systemFont(ofSize: 36)
-        static let cellFont = UIFont.systemFont(ofSize: 25)
+        static let cellFont = UIFont(name: "FRM3216x16", size: 22)
         static let gameScore = UIFont.systemFont(ofSize: 25)
         static let arrowSize = UIFont.systemFont(ofSize: 30)
         static let pixelFont = UIFont(name: "FRM3216x16", size: 22)
+        static let pixelUsernameFont = UIFont(name: "FRM3216x16", size: 36)
     }
 
     enum AppConstraints {
@@ -39,8 +42,8 @@ enum AppResources {
             
             enum Image {
                 static let top = CGFloat(36)
-                static let leading = CGFloat(36)
-                static let trailing = CGFloat(-36)
+                static let leading = CGFloat(56)
+                static let trailing = CGFloat(-56)
             }
             
             enum Name {
@@ -62,8 +65,8 @@ enum AppResources {
         }
         
         enum Table {
-            static let heightRow = CGFloat(50)
-            static let heightForHeader = CGFloat(50)
+            static let heightRow = CGFloat(60)
+            static let heightForHeader = CGFloat(100)
         }
       
         enum GameButtons {
@@ -111,6 +114,7 @@ enum AppResources {
         
         enum DataBase {
             static let avatar = "avatarImage.jpg"
+            static let smallAvatar = "smallAvatar.jpg"
             static let recordsJSON = "recordsSheet.json"
             static let defaultName = "Username"
             
@@ -124,11 +128,11 @@ enum AppResources {
             
             enum PickerData {
                 enum Cars: String {
-                    case car1 = "cars/car1"
-                    case car2 = "cars/car2"
-                    case car3 = "cars/car3"
-                    case car4 = "cars/car4"
-                    case car5 = "cars/car5"
+                    case car1 = "carsSelector/car1"
+                    case car2 = "carsSelector/car2"
+                    case car3 = "carsSelector/car3"
+                    case car4 = "carsSelector/car4"
+                    case car5 = "carsSelector/car5"
                     
                     static var allCases: [String] {
                         return [car1.rawValue, car2.rawValue, car3.rawValue, car4.rawValue, car5.rawValue]
@@ -139,17 +143,15 @@ enum AppResources {
                 
                 enum Barriers: String {
                     
-                        case barrier1 = "stone1"
-                        case barrier2 = "stone2"
-                        case barrier3 = "stone3"
-                        case barrier4 = "stone4"
+                        case barrier1 = "barriers/stone1"
+                        case barrier2 = "barriers/stone2"
+                        case barrier3 = "barriers/stone3"
+                        case barrier4 = "barriers/stone4"
                         
                         static var allCases: [String] {
                             return [barrier1.rawValue, barrier2.rawValue, barrier3.rawValue, barrier4.rawValue]
                         }
-                    
                     static let barrierIndex = "selectedBarrierIndex"
-                    
                 }
             }
         }
@@ -157,20 +159,23 @@ enum AppResources {
             static let defaultPerson = "defaultPerson"
             static let defaultAvatarPath = "Avatars"
         }
-        
     }
     
     enum GameConstants {
         static let defaultScore = 0
         
         // GAME SPEED
-        static let gameTimer = CGFloat(2)
+        static let gameTimer = CGFloat(1.5)
         
         enum Player {
             enum FramesConstants {
                 static let loadPositionConstantYPos = CGFloat(120)
-                static let loadPositionCenterX = CGFloat(50)
-                static let frameSize = CGSize(width: 100, height: 100)
+                static let loadPositionCenterX = CGFloat(width / 2)
+                fileprivate static let height = 100.0
+                
+                // 1.57 это разрешение сторон, для того чтобы ширина картинки фрейма выставлялась без "запаса" по ширине
+                fileprivate static let width = AppResources.GameConstants.Player.FramesConstants.height / 1.57
+                static let frameSize = CGSize(width: width, height: height)
             }
         }
         
@@ -197,7 +202,7 @@ enum AppResources {
             
             enum Values {
                 static let roadLineWidth = CGFloat(6)
-                static let lineDash: [NSNumber] = [26,8]
+                static let lineDash: [NSNumber] = [36,8]
                 static let roadSpeed = AppResources.GameConstants.gameTimer / 10
                 static let roadsideWidth = CGFloat(30)
             }

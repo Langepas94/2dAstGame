@@ -8,10 +8,36 @@
 import UIKit
 
 class BasePickerView: UIView {
-    let baseImageView = UIImageView()
-    let leftButton = UIButton(type: .system)
-    let rightButton = UIButton(type: .system)
-    let stackView = UIStackView()
+    
+    let baseImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
+    
+    let leftButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: AppResources.AppScreenUIColors.selectorPrevious), for: .normal)
+
+        button.sizeToFit()
+        return button
+    }()
+    let rightButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: AppResources.AppScreenUIColors.selectorNext), for: .normal)
+        button.sizeToFit()
+        return button
+    }()
+    
+    let stackView: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .horizontal
+        stack.distribution = .fillEqually
+        stack.alignment = .center
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
     var db = DataBase()
     var array: [UIImage]
     var imageNames: [String]
@@ -25,51 +51,23 @@ class BasePickerView: UIView {
         }
     }
     
-    init(array: [String], userDefaultsKey: String) {
-        
-        self.imageNames = array
-        self.array = array.compactMap { name in
-            return UIImage(named: name)
-        }
-        super.init(frame: .zero)
-        self.userDefaultsKey = userDefaultsKey
-        setupUI()
-        setInitial()
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+    // MARK: Flow
     func setInitial() {
         currentIndex = UserDefaults.standard.integer(forKey: userDefaultsKey)
         baseImageView.image = array[currentIndex]
     }
     
+    // MARK: - Setup UI
     func setupUI() {
         
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stackView)
         baseImageView.frame.size = AppResources.AppConstraints.SettingsScreen.pickerSize
-        stackView.axis = .horizontal
-        stackView.distribution = .equalCentering
-        stackView.alignment = .fill
-        
+
         backgroundColor = .clear
-        
-        baseImageView.contentMode = .scaleAspectFit
         
         baseImageView.image = array[currentIndex]
         
-        leftButton.setTitle("<", for: .normal)
-        leftButton.titleLabel?.font = AppResources.AppFonts.arrowSize
-        
         leftButton.addTarget(self, action: #selector(selectedLeft), for: .touchUpInside)
-        
-        
-        rightButton.setTitle(">", for: .normal)
-        rightButton.titleLabel?.font = AppResources.AppFonts.arrowSize
         
         rightButton.addTarget(self, action: #selector(selectedRight), for: .touchUpInside)
         
@@ -115,8 +113,23 @@ class BasePickerView: UIView {
     }
     
     func getItem(_ index: Int) -> String {
-        
         return imageNames[index]
+    }
+    
+    // MARK: - Init's
+    init(array: [String], userDefaultsKey: String) {
+        self.imageNames = array
+        self.array = array.compactMap { name in
+            return UIImage(named: name)
+        }
+        super.init(frame: .zero)
+        self.userDefaultsKey = userDefaultsKey
+        setupUI()
+        setInitial()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 

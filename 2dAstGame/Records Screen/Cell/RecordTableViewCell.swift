@@ -15,8 +15,9 @@ class RecordTableViewCell: UITableViewCell {
     
     private var userImage: UIImageView = {
         let image = UIImageView()
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
+        image.layer.cornerRadius = AppResources.AppConstraints.Cell.Image.width / 2
         image.layer.masksToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -38,6 +39,7 @@ class RecordTableViewCell: UITableViewCell {
         return record
     }()
     
+    
     // MARK: - Flow
     
     func setupUI() {
@@ -45,12 +47,13 @@ class RecordTableViewCell: UITableViewCell {
         contentView.addSubview(userImage)
         contentView.addSubview(userName)
         contentView.addSubview(userRecord)
-        
+        backgroundColor = .white.withAlphaComponent(0.6)
         NSLayoutConstraint.activate([
             userImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: AppResources.AppConstraints.Cell.Image.top),
             userImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: AppResources.AppConstraints.Cell.Image.leading),
             userImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: AppResources.AppConstraints.Cell.Image.bottom),
             userImage.widthAnchor.constraint(equalToConstant: AppResources.AppConstraints.Cell.Image.width),
+            userImage.heightAnchor.constraint(equalToConstant: AppResources.AppConstraints.Cell.Image.width),
             
             userName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: AppResources.AppConstraints.Cell.Name.top),
             userName.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: AppResources.AppConstraints.Cell.Name.leading),
@@ -75,8 +78,8 @@ class RecordTableViewCell: UITableViewCell {
         
         if  img == AppResources.AppStringsConstants.Images.defaultPerson  {
             userImage.image = UIImage(named: img)
-            
         } else {
+            print(img)
             userImage.image = UIImage(contentsOfFile: img)
         }
     }
@@ -96,6 +99,7 @@ class RecordTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
+        
     }
     
     required init?(coder: NSCoder) {

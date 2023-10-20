@@ -23,6 +23,16 @@ class FileManagerWorker {
         } catch {}
     }
     
+    func saveSmallImage(_ image: UIImage) {
+        guard let filePath = filePath else { return }
+        let fileURL = filePath.appendingPathComponent(AppResources.AppStringsConstants.DataBase.smallAvatar)
+//        guard let data = image.jpegData(compressionQuality: 0.3) else { return }
+//        do {
+//            try data.write(to: fileURL)
+//        } catch {}
+        saveCropSmallImage(image, url: fileURL)
+    }
+    
     func loadImage() -> UIImage? {
         guard let filePath = filePath else { return nil }
         let fileURL = filePath.appendingPathComponent(AppResources.AppStringsConstants.DataBase.avatar)
@@ -88,6 +98,10 @@ class FileManagerWorker {
                 var copy = model
                 if copy.userImg == AppResources.AppStringsConstants.Images.defaultPerson {
                     return copy
+                } else if copy.name == UserDefaults.standard.string(forKey: "name") {
+                    let fileURL = filePath.appendingPathComponent(AppResources.AppStringsConstants.DataBase.smallAvatar)
+                    copy.userImg = fileURL.path
+                    return copy
                 } else {
                     copy.userImg = getAvatarPath(model.name)
                     return copy
@@ -95,6 +109,11 @@ class FileManagerWorker {
             }
             let uniqueRecords = Array(Set(records))
             return uniqueRecords
+            //else if copy.name == UserDefaults.standard.string(forKey: "name") {
+//            copy.userImg = "avatarImage.jpg"
+//            return copy
+//        }
+            
             
         } catch {
             print("Ошибка при чтении файла JSON: \(error)")
@@ -128,12 +147,23 @@ class FileManagerWorker {
         
         let avatarFilename = userAvatarDirectory.appendingPathComponent("\(userName).jpg")
         
-        if let imageToSave: UIImage = loadImage() {
-            let scaledImage = imageToSave.cropToSize(CGSize(width: 100, height: 100))
-            let roundedImage = scaledImage?.makeCircularImage()
-            if let data = roundedImage?.jpegData(compressionQuality: 0.5) {
-                try? data.write(to: avatarFilename)
-            }
+//        if let imageToSave: UIImage = loadImage() {
+//            let scaledImage = imageToSave.cropToSize(CGSize(width: 100, height: 100))
+//            let roundedImage = scaledImage?.makeCircularImage()
+//            if let data = roundedImage?.jpegData(compressionQuality: 0.5) {
+//                try? data.write(to: avatarFilename)
+//            }
+//        }
+        let imageToSave = loadImage()
+        saveCropSmallImage(imageToSave, url: avatarFilename)
+    }
+    
+    private func saveCropSmallImage(_ image: UIImage?, url: URL) {
+        guard let image = image else { return}
+        let scaledImage = image.cropToSize(CGSize(width: 100, height: 100))
+        let roundedImage = scaledImage?.makeCircularImage()
+        if let data = roundedImage?.jpegData(compressionQuality: 0.5) {
+            try? data.write(to: url)
         }
     }
 }

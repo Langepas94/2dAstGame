@@ -19,6 +19,9 @@
 		4443FFB52AC577780079510A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4443FFB42AC577780079510A /* Assets.xcassets */; };
 		4443FFB82AC577780079510A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4443FFB62AC577780079510A /* LaunchScreen.storyboard */; };
 		444CEA5B2AE15D3300FBB273 /* FRM3216x16.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 444CEA592AE15D3300FBB273 /* FRM3216x16.ttf */; };
+		444CEA5F2AE2925100FBB273 /* fire.gif in Resources */ = {isa = PBXBuildFile; fileRef = 444CEA5E2AE2925100FBB273 /* fire.gif */; };
+		444CEA612AE293A800FBB273 /* UIimageView + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444CEA602AE293A800FBB273 /* UIimageView + extension.swift */; };
+		444CEA632AE2B4A500FBB273 /* UItextField + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444CEA622AE2B4A500FBB273 /* UItextField + extension.swift */; };
 		445378862ACC2AD40038CB54 /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445378852ACC2AD40038CB54 /* DataBase.swift */; };
 		4453788B2ACC34050038CB54 /* ActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4453788A2ACC34050038CB54 /* ActionSheet.swift */; };
 		4453788E2ACC57970038CB54 /* RecordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4453788D2ACC57970038CB54 /* RecordTableViewCell.swift */; };
@@ -47,6 +50,9 @@
 		4443FFB72AC577780079510A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4443FFB92AC577780079510A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		444CEA592AE15D3300FBB273 /* FRM3216x16.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FRM3216x16.ttf; sourceTree = "<group>"; };
+		444CEA5E2AE2925100FBB273 /* fire.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = fire.gif; sourceTree = "<group>"; };
+		444CEA602AE293A800FBB273 /* UIimageView + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIimageView + extension.swift"; sourceTree = "<group>"; };
+		444CEA622AE2B4A500FBB273 /* UItextField + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UItextField + extension.swift"; sourceTree = "<group>"; };
 		445378852ACC2AD40038CB54 /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		4453788A2ACC34050038CB54 /* ActionSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheet.swift; sourceTree = "<group>"; };
 		4453788D2ACC57970038CB54 /* RecordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTableViewCell.swift; sourceTree = "<group>"; };
@@ -163,6 +169,7 @@
 				44059C522ACA9E6C0090AA0E /* Resources */,
 				44BA42672ACA995500A68F62 /* MainScreen */,
 				4443FFAB2AC577760079510A /* AppDelegate.swift */,
+				444CEA5E2AE2925100FBB273 /* fire.gif */,
 				4443FFAD2AC577760079510A /* SceneDelegate.swift */,
 				4443FFB42AC577780079510A /* Assets.xcassets */,
 				4443FFB62AC577780079510A /* LaunchScreen.storyboard */,
@@ -241,6 +248,8 @@
 			isa = PBXGroup;
 			children = (
 				4488AE062AD96F6D00912F66 /* UIImage + extension.swift */,
+				444CEA602AE293A800FBB273 /* UIimageView + extension.swift */,
+				444CEA622AE2B4A500FBB273 /* UItextField + extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -313,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4443FFB82AC577780079510A /* LaunchScreen.storyboard in Resources */,
+				444CEA5F2AE2925100FBB273 /* fire.gif in Resources */,
 				4443FFB52AC577780079510A /* Assets.xcassets in Resources */,
 				444CEA5B2AE15D3300FBB273 /* FRM3216x16.ttf in Resources */,
 			);
@@ -338,6 +348,8 @@
 				4443A4222ACEC70B00C693F4 /* RoadSideView.swift in Sources */,
 				4443FFAC2AC577760079510A /* AppDelegate.swift in Sources */,
 				4488AE042AD91A9100912F66 /* FileManagerWorker.swift in Sources */,
+				444CEA632AE2B4A500FBB273 /* UItextField + extension.swift in Sources */,
+				444CEA612AE293A800FBB273 /* UIimageView + extension.swift in Sources */,
 				44059C5D2ACAAAB40090AA0E /* GameViewController.swift in Sources */,
 				44059C542ACA9E7A0090AA0E /* Resources.swift in Sources */,
 				4443FFAE2AC577760079510A /* SceneDelegate.swift in Sources */,

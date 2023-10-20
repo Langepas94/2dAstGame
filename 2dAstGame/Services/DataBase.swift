@@ -27,6 +27,7 @@ class DataBase: DataBaseProtocol {
         case .avatar:
             if let image = data as? UIImage {
                 fileManagerWorker.saveImage(image)
+                fileManagerWorker.saveSmallImage(image)
             }
         case .selectedCar:
             UserDefaults.standard.setValue(data, forKey: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.selectedCar.rawValue)
