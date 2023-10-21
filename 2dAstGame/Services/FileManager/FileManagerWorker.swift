@@ -26,10 +26,6 @@ class FileManagerWorker {
     func saveSmallImage(_ image: UIImage) {
         guard let filePath = filePath else { return }
         let fileURL = filePath.appendingPathComponent(AppResources.AppStringsConstants.DataBase.smallAvatar)
-//        guard let data = image.jpegData(compressionQuality: 0.3) else { return }
-//        do {
-//            try data.write(to: fileURL)
-//        } catch {}
         saveCropSmallImage(image, url: fileURL)
     }
     
@@ -54,7 +50,6 @@ class FileManagerWorker {
         let imagePath = getAvatarPath(record.name)
         
         do {
-            
             if FileManager.default.fileExists(atPath: fileURL.path), let data = try? Data(contentsOf: fileURL) {
                 records = try JSONDecoder().decode([ScoreModel].self, from: data)
             }
@@ -62,7 +57,6 @@ class FileManagerWorker {
             let recordExists = records.contains { existingRecord in
                 return existingRecord.name == record.name && existingRecord.score == record.score
             }
-            
             if !recordExists {
                 var recordWriting = record
                 
@@ -88,10 +82,9 @@ class FileManagerWorker {
     func loadRecords() -> [ScoreModel]? {
         guard let filePath = filePath else { return nil }
         let fileURL = filePath.appendingPathComponent(AppResources.AppStringsConstants.DataBase.recordsJSON)
-        
+        let filesmallAvatar = filePath.appendingPathComponent(AppResources.AppStringsConstants.DataBase.smallAvatar)
         do {
             let data = try Data(contentsOf: fileURL)
-            
             let decoder = JSONDecoder()
             var records = try decoder.decode([ScoreModel].self, from: data)
             records = records.map { model in
@@ -100,21 +93,22 @@ class FileManagerWorker {
                     return copy
                 } else if copy.name == UserDefaults.standard.string(forKey: "name") {
                     let fileURL = filePath.appendingPathComponent(AppResources.AppStringsConstants.DataBase.smallAvatar)
-                    copy.userImg = fileURL.path
-                    return copy
-                } else {
+                    if FileManager.default.fileExists(atPath: filePath.path) {
+                        copy.userImg = getAvatarPath(copy.name)
+                        return copy
+                    } else {
+                        copy.userImg = fileURL.path
+                        return copy
+                    }
+                 
+                }
+                else {
                     copy.userImg = getAvatarPath(model.name)
                     return copy
                 }
             }
             let uniqueRecords = Array(Set(records))
             return uniqueRecords
-            //else if copy.name == UserDefaults.standard.string(forKey: "name") {
-//            copy.userImg = "avatarImage.jpg"
-//            return copy
-//        }
-            
-            
         } catch {
             print("Ошибка при чтении файла JSON: \(error)")
             return nil
@@ -146,14 +140,7 @@ class FileManagerWorker {
         }
         
         let avatarFilename = userAvatarDirectory.appendingPathComponent("\(userName).jpg")
-        
-//        if let imageToSave: UIImage = loadImage() {
-//            let scaledImage = imageToSave.cropToSize(CGSize(width: 100, height: 100))
-//            let roundedImage = scaledImage?.makeCircularImage()
-//            if let data = roundedImage?.jpegData(compressionQuality: 0.5) {
-//                try? data.write(to: avatarFilename)
-//            }
-//        }
+
         let imageToSave = loadImage()
         saveCropSmallImage(imageToSave, url: avatarFilename)
     }

@@ -70,6 +70,7 @@ extension RecordsViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let records = records else { return UITableViewCell() }
         let sorted = records.sorted(by: {$0.score > $1.score })
+        print(sorted[indexPath.row].userImg)
         cell.configure(sorted[indexPath.row])
 
       return cell

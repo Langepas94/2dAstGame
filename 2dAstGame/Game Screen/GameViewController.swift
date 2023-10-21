@@ -197,7 +197,7 @@ extension GameViewController {
     
     private func displayLinkActive() {
         displayLink = CADisplayLink(target: self, selector: #selector(crashChecker))
-        displayLink?.add(to: .current, forMode: .common)
+        displayLink?.add(to: .current, forMode: .default)
     }
     
     private func updateScoreLabel() {
@@ -222,11 +222,12 @@ extension GameViewController {
     
     // MARK: Game stops
     private func stopAnyTimersAndAnimations() {
+        invalidateAllTimers()
         barrierView.layer.removeAllAnimations()
         roadSeparatorView.stopAllAnimations()
         playerView.stopAnimating()
         playerView.layer.removeAllAnimations()
-        invalidateAllTimers()
+        
     }
     
     private func invalidateAllTimers() {
@@ -274,7 +275,6 @@ extension GameViewController {
     @objc private func crashChecker()  {
         
         let roadSides = roadSide.roadsideFrames()
-        
         let movingFrame = playerView.layer.presentation()?.frame ?? playerView.frame
         let stoneFrame = barrierView.layer.presentation()?.frame ?? barrierView.frame
         
