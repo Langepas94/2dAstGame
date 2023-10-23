@@ -20,7 +20,7 @@ class RecordsViewController: UIViewController {
     }()
     
     private let backgroundImage: UIImageView = {
-        let bg = UIImageView(image: UIImage(named: AppResources.AppScreenUIColors.backgroundSecondImage))
+        let bg = UIImageView(image: UIImage(named: AppResources.UniqueConstants.ColorsImages.backgroundSecondImage))
         return bg
     }()
     
@@ -33,7 +33,6 @@ class RecordsViewController: UIViewController {
     // MARK: - Flow
     
     func setupUI() {
-//        view.backgroundColor = AppResources.AppScreenUIColors.backgroundColor
         view.addSubview(tableView)
         tableView.backgroundView = backgroundImage
         tableView.register(RecordTableViewCell.self, forCellReuseIdentifier: RecordTableViewCell.reuseID)
@@ -70,19 +69,18 @@ extension RecordsViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let records = records else { return UITableViewCell() }
         let sorted = records.sorted(by: {$0.score > $1.score })
-        print(sorted[indexPath.row].userImg)
         cell.configure(sorted[indexPath.row])
 
       return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-         let headerView = UIView(frame: CGRect(x: 0, y: 100, width: tableView.frame.size.width, height: AppResources.AppConstraints.Table.heightForHeader))
+        let headerView = UIView(frame: CGRect(x: 0, y: 100, width: tableView.frame.size.width, height: AppResources.Screens.RecordsScreen.ConstraintsAndSizes.Table.heightForHeader))
         
         let label = UILabel(frame: headerView.bounds)
         label.textAlignment = .center
         label.text = "Score"
-        label.font = AppResources.AppFonts.pixelUsernameFont
+        label.font = AppResources.UniqueConstants.Fonts.pixelUsernameFont
         label.textColor = .white
         headerView.addSubview(label)
         
@@ -91,11 +89,11 @@ extension RecordsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        AppResources.AppConstraints.Table.heightForHeader
+        AppResources.Screens.RecordsScreen.ConstraintsAndSizes.Table.heightForHeader
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        AppResources.AppConstraints.Table.heightRow
+        AppResources.Screens.RecordsScreen.ConstraintsAndSizes.Table.heightRow
     }
 }
 

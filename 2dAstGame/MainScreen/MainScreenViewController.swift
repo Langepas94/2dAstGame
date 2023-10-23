@@ -11,7 +11,7 @@ class MainScreenViewController: UIViewController {
     
     private lazy var startButton: BaseButtonView = {
         let button = BaseButtonView()
-        button.setTitle(AppResources.AppStringsConstants.BaseButton.start)
+        button.setTitle(AppResources.Screens.MainScreen.StringConstants.BaseButton.start)
         button.addTarget(self, action: #selector(gameScreen), for: .touchUpInside)
 
         return button
@@ -19,14 +19,14 @@ class MainScreenViewController: UIViewController {
     
     private lazy var recordsButton: BaseButtonView = {
         let button = BaseButtonView()
-        button.setTitle(AppResources.AppStringsConstants.BaseButton.records)
+        button.setTitle(AppResources.Screens.MainScreen.StringConstants.BaseButton.records)
         button.addTarget(self, action: #selector(recordsScreen), for: .touchUpInside)
         return button
     }()
     
     private lazy var settingsButton: BaseButtonView = {
         let button = BaseButtonView()
-        button.setTitle(AppResources.AppStringsConstants.BaseButton.settings)
+        button.setTitle(AppResources.Screens.MainScreen.StringConstants.BaseButton.settings)
         button.addTarget(self, action: #selector(settingsScreen), for: .touchUpInside)
         return button
     }()
@@ -40,7 +40,7 @@ class MainScreenViewController: UIViewController {
     }()
     
     private let backgroundImage: UIImageView = {
-        let bg = UIImageView(image: UIImage(named: AppResources.AppScreenUIColors.backgroundImage))
+        let bg = UIImageView(image: UIImage(named: AppResources.UniqueConstants.ColorsImages.backgroundImage))
         bg.contentMode = .scaleAspectFill
         return bg
     }()
@@ -74,7 +74,6 @@ class MainScreenViewController: UIViewController {
 extension MainScreenViewController {
     
     func setupUI() {
-//        view.backgroundColor = AppResources.AppScreenUIColors.backgroundColor
         backgroundImage.frame = view.frame
         view.addSubview(backgroundImage)
         view.sendSubviewToBack(backgroundImage)
@@ -83,7 +82,7 @@ extension MainScreenViewController {
         buttonsStackView.addArrangedSubview(startButton)
         buttonsStackView.addArrangedSubview(recordsButton)
         buttonsStackView.addArrangedSubview(settingsButton)
-        buttonsStackView.frame.size = AppResources.AppConstraints.MainScreen.stackViewSize
+        buttonsStackView.frame.size = AppResources.Screens.MainScreen.ConstraintsAndSizes.stackViewSize
         buttonsStackView.center = view.center
     }
 }

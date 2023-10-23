@@ -21,9 +21,9 @@ class SettingsViewController: UIViewController {
     private var userName: UITextField = {
         let name = UITextField()
         name.translatesAutoresizingMaskIntoConstraints = false
-        name.textColor = AppResources.AppScreenUIColors.mainText
+        name.textColor = AppResources.Screens.SettingsScreen.Colors.mainText
         name.textAlignment = .center
-        name.font = AppResources.AppFonts.pixelUsernameFont
+        name.font = AppResources.UniqueConstants.Fonts.pixelUsernameFont
         name.adjustsFontSizeToFitWidth = true
         return name
     }()
@@ -41,7 +41,7 @@ class SettingsViewController: UIViewController {
     }()
     
     private let backgroundImage: UIImageView = {
-        let bg = UIImageView(image: UIImage(named: AppResources.AppScreenUIColors.backgroundSecondImage))
+        let bg = UIImageView(image: UIImage(named: AppResources.UniqueConstants.ColorsImages.backgroundSecondImage))
    
         bg.contentMode = .center
         return bg
@@ -112,24 +112,24 @@ extension SettingsViewController {
         
         backgroundImage.frame = view.frame
         NSLayoutConstraint.activate([
-            avatarImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: AppResources.AppConstraints.SettingsScreen.Image.top),
-            avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppResources.AppConstraints.SettingsScreen.Image.leading),
-            avatarImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppResources.AppConstraints.SettingsScreen.Image.trailing),
+            avatarImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.Image.top),
+            avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.Image.leading),
+            avatarImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.Image.trailing),
             avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
             
-            userName.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: AppResources.AppConstraints.SettingsScreen.Name.top),
-            userName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppResources.AppConstraints.SettingsScreen.Name.leading),
-            userName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppResources.AppConstraints.SettingsScreen.Name.trailing),
+            userName.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.Name.top),
+            userName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.Name.leading),
+            userName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.Name.trailing),
             
-            carPicker.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: AppResources.AppConstraints.SettingsScreen.CarPicker.top),
+            carPicker.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.CarPicker.top),
             carPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             carPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            carPicker.heightAnchor.constraint(equalToConstant: AppResources.AppConstraints.SettingsScreen.CarPicker.height),
+            carPicker.heightAnchor.constraint(equalToConstant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.CarPicker.height),
             
-            barrierPicker.topAnchor.constraint(equalTo: carPicker.bottomAnchor, constant: AppResources.AppConstraints.SettingsScreen.BarrierPicker.top),
+            barrierPicker.topAnchor.constraint(equalTo: carPicker.bottomAnchor, constant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.BarrierPicker.top),
             barrierPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             barrierPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            barrierPicker.heightAnchor.constraint(equalToConstant: AppResources.AppConstraints.SettingsScreen.BarrierPicker.height),
+            barrierPicker.heightAnchor.constraint(equalToConstant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.BarrierPicker.height),
             barrierPicker.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         blurEffect()
@@ -164,7 +164,7 @@ extension SettingsViewController: UIImagePickerControllerDelegate, UINavigationC
 
 extension SettingsViewController: UITextFieldDelegate {
     private func setupTextField() {
-        let name: String = db.read(dataType: .name) ?? AppResources.AppStringsConstants.DataBase.defaultName
+        let name: String = db.read(dataType: .name) ?? AppResources.UniqueConstants.DataBase.defaultName
         userName.text = name
     }
     

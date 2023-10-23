@@ -16,7 +16,7 @@ class FileManagerWorker {
     
     func saveImage(_ image: UIImage) {
         guard let filePath = filePath else { return }
-        let fileURL = filePath.appendingPathComponent(AppResources.AppStringsConstants.DataBase.avatar)
+        let fileURL = filePath.appendingPathComponent(AppResources.UniqueConstants.DataBase.avatar)
         guard let data = image.jpegData(compressionQuality: 0.3) else { return }
         do {
             try data.write(to: fileURL)
@@ -25,17 +25,17 @@ class FileManagerWorker {
     
     func saveSmallImage(_ image: UIImage) {
         guard let filePath = filePath else { return }
-        let fileURL = filePath.appendingPathComponent(AppResources.AppStringsConstants.DataBase.smallAvatar)
+        let fileURL = filePath.appendingPathComponent(AppResources.UniqueConstants.DataBase.smallAvatar)
         saveCropSmallImage(image, url: fileURL)
     }
     
     func loadImage() -> UIImage? {
         guard let filePath = filePath else { return nil }
-        let fileURL = filePath.appendingPathComponent(AppResources.AppStringsConstants.DataBase.avatar)
+        let fileURL = filePath.appendingPathComponent(AppResources.UniqueConstants.DataBase.avatar)
         if FileManager.default.fileExists(atPath: fileURL.path) {
             return UIImage(contentsOfFile: fileURL.path)
         } else {
-            return UIImage(named: AppResources.AppStringsConstants.Images.defaultPerson)
+            return UIImage(named: AppResources.UniqueConstants.DataBase.Images.defaultPerson)
         }
     }
     
@@ -44,7 +44,7 @@ class FileManagerWorker {
     func saveRecords(_ record: ScoreModel) {
         guard record.score > 0 else { return }
         guard let filePath = filePath else { return }
-        let fileURL = filePath.appendingPathComponent(AppResources.AppStringsConstants.DataBase.recordsJSON)
+        let fileURL = filePath.appendingPathComponent(AppResources.UniqueConstants.DataBase.recordsJSON)
         print(fileURL)
         var records: [ScoreModel] = []
         let imagePath = getAvatarPath(record.name)
@@ -60,7 +60,7 @@ class FileManagerWorker {
             if !recordExists {
                 var recordWriting = record
                 
-                if recordWriting.userImg == AppResources.AppStringsConstants.Images.defaultPerson {
+                if recordWriting.userImg == AppResources.UniqueConstants.DataBase.Images.defaultPerson {
                     records.append(recordWriting)
                 } else {
                     recordWriting.userImg = imagePath
@@ -81,18 +81,18 @@ class FileManagerWorker {
     
     func loadRecords() -> [ScoreModel]? {
         guard let filePath = filePath else { return nil }
-        let fileURL = filePath.appendingPathComponent(AppResources.AppStringsConstants.DataBase.recordsJSON)
-        let filesmallAvatar = filePath.appendingPathComponent(AppResources.AppStringsConstants.DataBase.smallAvatar)
+        let fileURL = filePath.appendingPathComponent(AppResources.UniqueConstants.DataBase.recordsJSON)
+        let filesmallAvatar = filePath.appendingPathComponent(AppResources.UniqueConstants.DataBase.smallAvatar)
         do {
             let data = try Data(contentsOf: fileURL)
             let decoder = JSONDecoder()
             var records = try decoder.decode([ScoreModel].self, from: data)
             records = records.map { model in
                 var copy = model
-                if copy.userImg == AppResources.AppStringsConstants.Images.defaultPerson {
+                if copy.userImg == AppResources.UniqueConstants.DataBase.Images.defaultPerson {
                     return copy
                 } else if copy.name == UserDefaults.standard.string(forKey: "name") {
-                    let fileURL = filePath.appendingPathComponent(AppResources.AppStringsConstants.DataBase.smallAvatar)
+                    let fileURL = filePath.appendingPathComponent(AppResources.UniqueConstants.DataBase.smallAvatar)
                     if FileManager.default.fileExists(atPath: filePath.path) {
                         copy.userImg = getAvatarPath(copy.name)
                         return copy
@@ -119,7 +119,7 @@ class FileManagerWorker {
     
     private func getAvatarPath(_ userName: String) -> String {
         guard let filePath = filePath else { return ""}
-        let avatarDirectory = filePath.appendingPathComponent(AppResources.AppStringsConstants.Images.defaultAvatarPath)
+        let avatarDirectory = filePath.appendingPathComponent(AppResources.UniqueConstants.DataBase.Images.defaultAvatarPath)
         let userAvatarDirectory = avatarDirectory.appendingPathComponent(userName)
         let avatarFilename = userAvatarDirectory.appendingPathComponent("\(userName).jpg")
         return avatarFilename.path
@@ -127,7 +127,7 @@ class FileManagerWorker {
     
     private func saveRecordAvatar(_ userName: String) {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let avatarDirectory = documentsDirectory.appendingPathComponent(AppResources.AppStringsConstants.Images.defaultAvatarPath)
+        let avatarDirectory = documentsDirectory.appendingPathComponent(AppResources.UniqueConstants.DataBase.Images.defaultAvatarPath)
         
         if !FileManager.default.fileExists(atPath: avatarDirectory.path) {
             try? FileManager.default.createDirectory(at: avatarDirectory, withIntermediateDirectories: false, attributes: nil)

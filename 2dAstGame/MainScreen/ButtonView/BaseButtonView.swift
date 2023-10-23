@@ -10,15 +10,15 @@ import UIKit
 class BaseButtonView: UIButton {
     
     private func setupAppearance() {
-        backgroundColor = AppResources.AppScreenUIColors.backgroundColor
-        setTitleColor(AppResources.AppScreenUIColors.buttonTitle, for: .normal)
-        titleLabel?.font = AppResources.AppFonts.pixelFont
+        backgroundColor = AppResources.UniqueConstants.ColorsImages.backgroundColor
+        setTitleColor(AppResources.Screens.MainScreen.Colors.buttonTitle, for: .normal)
+        titleLabel?.font = AppResources.UniqueConstants.Fonts.pixelFont
         translatesAutoresizingMaskIntoConstraints = false
-        layer.cornerRadius = 20
-        layer.shadowColor = AppResources.AppScreenUIColors.buttonTitle.cgColor
-        layer.shadowOpacity = 0.6
-        layer.shadowOffset = CGSize(width: 3, height: 3)
-        layer.shadowRadius = 4
+        layer.cornerRadius = AppResources.Screens.MainScreen.ConstraintsAndSizes.BaseButton.cornerRadius
+        layer.shadowColor = AppResources.Screens.MainScreen.Colors.buttonTitle.cgColor
+        layer.shadowOpacity = AppResources.Screens.MainScreen.ConstraintsAndSizes.BaseButton.shadowOpacity
+        layer.shadowOffset = AppResources.Screens.MainScreen.ConstraintsAndSizes.BaseButton.shadowOffset
+        layer.shadowRadius = AppResources.Screens.MainScreen.ConstraintsAndSizes.BaseButton.shadowRadius
     }
     
     func setTitle(_ title: String) {

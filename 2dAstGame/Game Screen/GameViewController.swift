@@ -18,7 +18,7 @@ final class GameViewController: UIViewController {
     }()
     
     private let roadSide: RoadSideView  = {
-        let roadSide = RoadSideView(frame: .zero, roadsideWidth: AppResources.GameConstants.RoadConstants.Values.roadsideWidth)
+        let roadSide = RoadSideView(frame: .zero, roadsideWidth: AppResources.Screens.GameScreen.ConstraintsAndSizes.Road.roadLineWidth)
         roadSide.translatesAutoresizingMaskIntoConstraints = false
         return roadSide
     }()
@@ -27,7 +27,7 @@ final class GameViewController: UIViewController {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .horizontal
-        stack.distribution = .equalCentering
+        stack.distribution = .fillEqually
         return stack
     }()
     
@@ -46,17 +46,17 @@ final class GameViewController: UIViewController {
     
     private let gameScoreView: UILabel = {
         let gameScore = UILabel()
-        gameScore.text = String(AppResources.GameConstants.defaultScore)
+        gameScore.text = String(AppResources.Screens.GameScreen.GameLogic.defaultScore)
         gameScore.numberOfLines = 0
         gameScore.textColor = .white
-        gameScore.font = AppResources.AppFonts.gameScore
+        gameScore.font = AppResources.UniqueConstants.Fonts.gameScore
         gameScore.translatesAutoresizingMaskIntoConstraints = false
         return gameScore
     }()
     
     private var buttonSpeedTimer: Timer?
     private var gametimer: Timer?
-    private var displayLink: CADisplayLink?
+    private var gameDisplayLink: CADisplayLink?
     
     private var fireGifView = UIImageView()
     private var gameAlert: GameAlert = GameAlert()
@@ -78,7 +78,8 @@ final class GameViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        playerView.frame.origin.y = gameButtonsStackView.frame.origin.y - AppResources.GameConstants.Player.FramesConstants.loadPositionConstantYPos
+        playerView.frame.origin.y = gameButtonsStackView.frame.origin.y -
+        AppResources.Screens.GameScreen.ConstraintsAndSizes.Player.loadPositionConstantYPos
     }
     
     // MARK: - Flow
@@ -111,25 +112,25 @@ extension GameViewController {
     // MARK: Barrier UI
     private func setupBarrierViewUI() {
         view.addSubview(barrierView)
-        barrierView.frame.origin = .init(x: .random(in: 0...AppResources.GameConstants.Barrier.FramesConstants.originXMax), y: -AppResources.GameConstants.Barrier.FramesConstants.originYMax)
-        barrierView.frame.size = AppResources.GameConstants.Barrier.FramesConstants.frameSize
+        barrierView.frame.origin = .init(x: .random(in: 0...AppResources.Screens.GameScreen.ConstraintsAndSizes.Barrier.originXMax), y: -AppResources.Screens.GameScreen.ConstraintsAndSizes.Barrier.originYMax)
+        barrierView.frame.size = AppResources.Screens.GameScreen.ConstraintsAndSizes.Barrier.frameSize
     }
     
     // MARK: Player UI
     private func setupPlayerViewUI() {
         view.addSubview(playerView)
-        playerView.center.x = view.center.x - AppResources.GameConstants.Player.FramesConstants.loadPositionCenterX
-        playerView.frame.size = AppResources.GameConstants.Player.FramesConstants.frameSize
+        playerView.center.x = view.center.x - AppResources.Screens.GameScreen.ConstraintsAndSizes.Player.loadPositionCenterX
+        playerView.frame.size = AppResources.Screens.GameScreen.ConstraintsAndSizes.Player.frameSize
     }
     
     // MARK: GameScore UI
     private func setupGameScoreUI() {
         view.addSubview(gameScoreView)
         NSLayoutConstraint.activate([
-            gameScoreView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: AppResources.AppConstraints.GameScore.top),
-            gameScoreView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppResources.AppConstraints.GameScore.trailing),
-            gameScoreView.heightAnchor.constraint(equalToConstant: AppResources.AppConstraints.GameScore.height),
-            gameScoreView.widthAnchor.constraint(equalToConstant: AppResources.AppConstraints.GameScore.height),
+            gameScoreView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: AppResources.Screens.GameScreen.ConstraintsAndSizes.GameScore.top),
+            gameScoreView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppResources.Screens.GameScreen.ConstraintsAndSizes.GameScore.trailing),
+            gameScoreView.heightAnchor.constraint(equalToConstant: AppResources.Screens.GameScreen.ConstraintsAndSizes.GameScore.height),
+            gameScoreView.widthAnchor.constraint(equalToConstant: AppResources.Screens.GameScreen.ConstraintsAndSizes.GameScore.height),
         ])
     }
     
@@ -137,25 +138,34 @@ extension GameViewController {
     private func setupGameButtonsUI() {
         view.addSubview(gameButtonsStackView)
         NSLayoutConstraint.activate([
-            gameButtonsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: AppResources.AppConstraints.GameButtons.bottom),
-            gameButtonsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: AppResources.AppConstraints.GameButtons.leading),
-            gameButtonsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: AppResources.AppConstraints.GameButtons.trailing),
+            gameButtonsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: AppResources.Screens.GameScreen.ConstraintsAndSizes.GameButtons.bottom),
+            gameButtonsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: AppResources.Screens.GameScreen.ConstraintsAndSizes.GameButtons.leading),
+            gameButtonsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: AppResources.Screens.GameScreen.ConstraintsAndSizes.GameButtons.trailing),
         ])
         
-        let buttonLeft = UIButton(type: .system)
-        
-        buttonLeft.setTitle("← Налево", for: .normal)
+
+        let buttonLeft = createGameButton(title: "← Left")
+
         buttonLeft.addTarget(self, action: #selector(buttonLeftLongPressed), for: .touchDown)
         buttonLeft.addTarget(self, action: #selector(buttonReleased), for: [.touchUpInside, .touchUpOutside])
         
-        let buttonRight = UIButton(type: .system)
+        let buttonRight = createGameButton(title: "Right →")
         
-        buttonRight.setTitle("Направо →", for: .normal)
         buttonRight.addTarget(self, action: #selector(buttonRightLongPressed), for: .touchDown)
         buttonRight.addTarget(self, action: #selector(buttonReleased), for: [.touchUpInside, .touchUpOutside])
-        
+
         gameButtonsStackView.addArrangedSubview(buttonLeft)
         gameButtonsStackView.addArrangedSubview(buttonRight)
+    }
+    
+    private func createGameButton(title: String) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .red.withAlphaComponent(0.6)
+        button.titleLabel?.font = AppResources.UniqueConstants.Fonts.pixelFont
+        button.layer.cornerRadius = 10
+        return button
     }
 }
 
@@ -163,23 +173,20 @@ extension GameViewController {
 
 extension GameViewController {
     private func gameSetup() {
-        if let name: String = db.read(dataType: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.name) {
-            gameScore = ScoreModel(name: name, score: AppResources.GameConstants.defaultScore)
+        if let name: String = db.read(dataType: AppResources.UniqueConstants.DataBase.UserDefaultsKeys.name) {
+            gameScore = ScoreModel(name: name, score: AppResources.Screens.GameScreen.GameLogic.defaultScore)
         }
         
-        if let image: String = db.read(dataType: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.selectedCar)  {
+        if let image: String = db.read(dataType: AppResources.UniqueConstants.DataBase.UserDefaultsKeys.selectedCar)  {
             let playerStringArray = image.components(separatedBy: "/")
             let playerImage = "carsPlayer/" + playerStringArray[1]
-            print(playerImage)
             playerView.image = UIImage(named: playerImage)
         }
         
-        if let barrier: String = db.read(dataType: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.selectedBarrier) {
+        if let barrier: String = db.read(dataType: AppResources.UniqueConstants.DataBase.UserDefaultsKeys.selectedBarrier) {
             barrierView.image = UIImage(named: barrier)
         }
     }
-    
-
 }
 
 // MARK: - Game Flow
@@ -189,15 +196,15 @@ extension GameViewController {
         gameScore.clear()
         self.displayLinkActive()
         self.updateScoreLabel()
-        gametimer = Timer.scheduledTimer(withTimeInterval: AppResources.GameConstants.gameTimer, repeats: true, block: { [weak self] timer in
+        gametimer = Timer.scheduledTimer(withTimeInterval: AppResources.Screens.GameScreen.GameLogic.gameTimer, repeats: true, block: { [weak self] timer in
             self?.animationScoreUpdater()
             self?.updateScoreLabel()
         })
     }
     
     private func displayLinkActive() {
-        displayLink = CADisplayLink(target: self, selector: #selector(crashChecker))
-        displayLink?.add(to: .current, forMode: .default)
+        gameDisplayLink = CADisplayLink(target: self, selector: #selector(crashChecker))
+        gameDisplayLink?.add(to: .current, forMode: .default)
     }
     
     private func updateScoreLabel() {
@@ -208,12 +215,12 @@ extension GameViewController {
     // MARK: Game alert
     private func gameAlertViewPresent() {
         
-        gameAlert.showAlert(title: AppResources.GameConstants.GameAlertTexts.title, message: AppResources.GameConstants.GameAlertTexts.message, viewController: self) { action in
-            self.db.save(dataType: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.records, data: self.gameScore)
+        gameAlert.showAlert(title: AppResources.Screens.GameScreen.StringConstants.GameAlertTexts.title, message: AppResources.Screens.GameScreen.StringConstants.GameAlertTexts.message, viewController: self) { action in
+            self.db.save(dataType: AppResources.UniqueConstants.DataBase.UserDefaultsKeys.records, data: self.gameScore)
             self.fireCrash()
             self.dismiss(animated: true)
         } restartAction: { _ in
-            self.db.save(dataType: AppResources.AppStringsConstants.DataBase.UserDefaultsKeys.records, data: self.gameScore)
+            self.db.save(dataType: AppResources.UniqueConstants.DataBase.UserDefaultsKeys.records, data: self.gameScore)
             self.fireCrash()
             self.resetMovingViewPosition()
             self.gameStarter()
@@ -223,6 +230,7 @@ extension GameViewController {
     // MARK: Game stops
     private func stopAnyTimersAndAnimations() {
         invalidateAllTimers()
+        barrierView.stopAnimating()
         barrierView.layer.removeAllAnimations()
         roadSeparatorView.stopAllAnimations()
         playerView.stopAnimating()
@@ -231,21 +239,18 @@ extension GameViewController {
     }
     
     private func invalidateAllTimers() {
+        gameDisplayLink?.remove(from: .current, forMode: .default)
+        gameDisplayLink?.invalidate()
+        gameDisplayLink = nil
         buttonSpeedTimer?.invalidate()
         buttonSpeedTimer = nil
         gametimer?.invalidate()
         gametimer = nil
-        
-        DispatchQueue.main.async {
-            self.displayLink?.remove(from: .current, forMode: .common)
-            self.displayLink?.invalidate()
-            self.displayLink = nil
-        }
     }
     
     // MARK: reset position
     private func resetMovingViewPosition() {
-        barrierView.frame.origin = .init(x: .random(in: 0...AppResources.GameConstants.Barrier.FramesConstants.originXMax), y: -AppResources.GameConstants.Barrier.FramesConstants.originYMax)
+        barrierView.frame.origin = .init(x: .random(in: 0...AppResources.Screens.GameScreen.ConstraintsAndSizes.Barrier.originXMax), y: -AppResources.Screens.GameScreen.ConstraintsAndSizes.Barrier.originYMax)
         playerView.center.x = view.center.x
         roadSeparatorView.layoutSubviews()
         view.layoutIfNeeded()
@@ -278,7 +283,7 @@ extension GameViewController {
         let movingFrame = playerView.layer.presentation()?.frame ?? playerView.frame
         let stoneFrame = barrierView.layer.presentation()?.frame ?? barrierView.frame
         
-        if movingFrame.intersects(stoneFrame) || movingFrame.intersects(roadSides.0) || movingFrame.intersects(roadSides.1)  {
+        if movingFrame.intersects(stoneFrame) || movingFrame.intersects(roadSides.0) || movingFrame.intersects(roadSides.1) {
             barrierView.frame = stoneFrame
             stopAnyTimersAndAnimations()
             fireCrash(movingFrame)
@@ -290,20 +295,20 @@ extension GameViewController {
     @objc private func animationScoreUpdater() {
         self.gameScore.score += 1
         let framesEdges = roadSide.roadsideFrameInside()
-        self.barrierView.frame.origin = .init(x: .random(in: framesEdges.0...framesEdges.1 - AppResources.GameConstants.Barrier.FramesConstants.frameSize.width), y: -AppResources.GameConstants.Barrier.FramesConstants.frameSize.width)
-        UIView.animate(withDuration: AppResources.GameConstants.gameTimer, delay: 0, options: [.curveLinear], animations: {
-            self.barrierView.frame.origin.y = self.view.frame.maxY +  AppResources.GameConstants.Barrier.FramesConstants.frameSize.height
+        self.barrierView.frame.origin = .init(x: .random(in: framesEdges.0...framesEdges.1 - AppResources.Screens.GameScreen.ConstraintsAndSizes.Barrier.frameSize.width), y: -AppResources.Screens.GameScreen.ConstraintsAndSizes.Barrier.frameSize.width)
+        UIView.animate(withDuration: AppResources.Screens.GameScreen.GameLogic.gameTimer, delay: 0, options: [.curveLinear], animations: {
+            self.barrierView.frame.origin.y = self.view.frame.maxY +  AppResources.Screens.GameScreen.ConstraintsAndSizes.Barrier.frameSize.height
         })
     }
     
     // MARK: Button's and actions
     
     @objc private func buttonLeftLongPressed() {
-        buttonSpeedTimer = Timer.scheduledTimer(timeInterval: AppResources.GameConstants.Buttons.buttonSpeed, target: self, selector: #selector(moveViewLeft), userInfo: nil, repeats: true)
+        buttonSpeedTimer = Timer.scheduledTimer(timeInterval: AppResources.Screens.GameScreen.GameLogic.Buttons.buttonSpeed, target: self, selector: #selector(moveViewLeft), userInfo: nil, repeats: true)
     }
     
     @objc private func buttonRightLongPressed() {
-        buttonSpeedTimer = Timer.scheduledTimer(timeInterval: AppResources.GameConstants.Buttons.buttonSpeed, target: self, selector: #selector(moveViewRight), userInfo: nil, repeats: true)
+        buttonSpeedTimer = Timer.scheduledTimer(timeInterval: AppResources.Screens.GameScreen.GameLogic.Buttons.buttonSpeed, target: self, selector: #selector(moveViewRight), userInfo: nil, repeats: true)
     }
     
     @objc private func buttonReleased() {
@@ -316,13 +321,13 @@ extension GameViewController {
         guard playerView.frame.origin.x > 0 else {
             return
         }
-        playerView.frame.origin.x -= AppResources.GameConstants.Buttons.buttonOffset
+        playerView.frame.origin.x -= AppResources.Screens.GameScreen.GameLogic.Buttons.buttonOffset
     }
     
     @objc private func moveViewRight() {
         guard playerView.frame.maxX < view.bounds.width else {
             return
         }
-        playerView.frame.origin.x += AppResources.GameConstants.Buttons.buttonOffset
+        playerView.frame.origin.x += AppResources.Screens.GameScreen.GameLogic.Buttons.buttonOffset
     }
 }

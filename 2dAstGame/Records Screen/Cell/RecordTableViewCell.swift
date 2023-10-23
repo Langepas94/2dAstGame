@@ -17,7 +17,7 @@ class RecordTableViewCell: UITableViewCell {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
-        image.layer.cornerRadius = AppResources.AppConstraints.Cell.Image.width / 2
+        image.layer.cornerRadius = AppResources.Screens.RecordsScreen.ConstraintsAndSizes.Cell.Image.width / 2
         image.layer.masksToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -26,16 +26,16 @@ class RecordTableViewCell: UITableViewCell {
     private var userName: UILabel = {
         let name = UILabel()
         name.translatesAutoresizingMaskIntoConstraints = false
-        name.textColor = AppResources.AppScreenUIColors.mainText
-        name.font = AppResources.AppFonts.cellFont
+        name.textColor = AppResources.Screens.RecordsScreen.Colors.Cell.mainText
+        name.font = AppResources.UniqueConstants.Fonts.cellFont
         return name
     }()
     
     private var userRecord: UILabel = {
         let record = UILabel()
         record.translatesAutoresizingMaskIntoConstraints = false
-        record.textColor = AppResources.AppScreenUIColors.mainText
-        record.font = AppResources.AppFonts.cellFont
+        record.textColor = AppResources.Screens.RecordsScreen.Colors.Cell.mainText
+        record.font = AppResources.UniqueConstants.Fonts.cellFont
         return record
     }()
     
@@ -49,20 +49,20 @@ class RecordTableViewCell: UITableViewCell {
         contentView.addSubview(userRecord)
         backgroundColor = .white.withAlphaComponent(0.6)
         NSLayoutConstraint.activate([
-            userImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: AppResources.AppConstraints.Cell.Image.top),
-            userImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: AppResources.AppConstraints.Cell.Image.leading),
-            userImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: AppResources.AppConstraints.Cell.Image.bottom),
-            userImage.widthAnchor.constraint(equalToConstant: AppResources.AppConstraints.Cell.Image.width),
-            userImage.heightAnchor.constraint(equalToConstant: AppResources.AppConstraints.Cell.Image.width),
+            userImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: AppResources.Screens.RecordsScreen.ConstraintsAndSizes.Cell.Image.top),
+            userImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: AppResources.Screens.RecordsScreen.ConstraintsAndSizes.Cell.Image.leading),
+            userImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: AppResources.Screens.RecordsScreen.ConstraintsAndSizes.Cell.Image.bottom),
+            userImage.widthAnchor.constraint(equalToConstant: AppResources.Screens.RecordsScreen.ConstraintsAndSizes.Cell.Image.width),
+            userImage.heightAnchor.constraint(equalToConstant: AppResources.Screens.RecordsScreen.ConstraintsAndSizes.Cell.Image.width),
             
-            userName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: AppResources.AppConstraints.Cell.Name.top),
-            userName.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: AppResources.AppConstraints.Cell.Name.leading),
-            userName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: AppResources.AppConstraints.Cell.Name.bottom),
+            userName.topAnchor.constraint(equalTo: contentView.topAnchor, constant: AppResources.Screens.RecordsScreen.ConstraintsAndSizes.Cell.Name.top),
+            userName.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: AppResources.Screens.RecordsScreen.ConstraintsAndSizes.Cell.Name.leading),
+            userName.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: AppResources.Screens.RecordsScreen.ConstraintsAndSizes.Cell.Name.bottom),
             userName.centerYAnchor.constraint(equalTo: userImage.centerYAnchor),
             
-            userRecord.topAnchor.constraint(equalTo: contentView.topAnchor, constant: AppResources.AppConstraints.Cell.Record.top),
-            userRecord.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: AppResources.AppConstraints.Cell.Record.trailing),
-            userRecord.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: AppResources.AppConstraints.Cell.Record.bottom),
+            userRecord.topAnchor.constraint(equalTo: contentView.topAnchor, constant: AppResources.Screens.RecordsScreen.ConstraintsAndSizes.Cell.Record.top),
+            userRecord.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: AppResources.Screens.RecordsScreen.ConstraintsAndSizes.Cell.Record.trailing),
+            userRecord.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: AppResources.Screens.RecordsScreen.ConstraintsAndSizes.Cell.Record.bottom),
             userRecord.centerYAnchor.constraint(equalTo: userImage.centerYAnchor),
             
         ])
@@ -74,12 +74,11 @@ class RecordTableViewCell: UITableViewCell {
         userName.text = recordsData.name
         userRecord.text = String(recordsData.score)
         
-        let img = recordsData.userImg ?? AppResources.AppStringsConstants.Images.defaultPerson
+        let img = recordsData.userImg ?? AppResources.UniqueConstants.DataBase.Images.defaultPerson
         
-        if  img == AppResources.AppStringsConstants.Images.defaultPerson  {
+        if  img == AppResources.UniqueConstants.DataBase.Images.defaultPerson  {
             userImage.image = UIImage(named: img)
         } else {
-            print(img)
             userImage.image = UIImage(contentsOfFile: img)
         }
     }

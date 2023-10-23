@@ -13,7 +13,7 @@ struct ScoreModel: Codable {
     var userImg: String?
     
     mutating func clear() {
-        score = AppResources.GameConstants.defaultScore
+        score = AppResources.Screens.GameScreen.GameLogic.defaultScore
     }
 }
 

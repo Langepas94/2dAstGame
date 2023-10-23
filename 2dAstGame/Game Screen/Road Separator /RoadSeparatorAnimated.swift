@@ -13,7 +13,7 @@ class RoadSeparatorAnimated: UIView {
     private let roadLayer = CAShapeLayer()
     private let separatorLayer = CAShapeLayer()
     private let separatorAnimation = CABasicAnimation(keyPath: "lineDashPhase")
-    private var speed: CFTimeInterval = AppResources.GameConstants.RoadConstants.Values.roadSpeed
+    private var speed: CFTimeInterval = AppResources.Screens.GameScreen.GameLogic.roadSpeed
 
     // MARK: Stop All
     
@@ -26,10 +26,10 @@ class RoadSeparatorAnimated: UIView {
     // MARK: Setup Line with speed
     
     private func setupLayers(_ speed: CFTimeInterval) {
-        separatorLayer.strokeColor = AppResources.GameConstants.RoadConstants.Colors.roadLineColor
-        separatorLayer.lineWidth = AppResources.GameConstants.RoadConstants.Values.roadLineWidth
-        separatorLayer.fillColor = AppResources.GameConstants.RoadConstants.Colors.betweenLine
-        separatorLayer.lineDashPattern = AppResources.GameConstants.RoadConstants.Values.lineDash
+        separatorLayer.strokeColor = AppResources.Screens.GameScreen.Colors.Road.roadLineColor
+        separatorLayer.lineWidth = AppResources.Screens.GameScreen.ConstraintsAndSizes.Road.roadLineWidth
+        separatorLayer.fillColor = AppResources.Screens.GameScreen.Colors.Road.betweenLine
+        separatorLayer.lineDashPattern = AppResources.Screens.GameScreen.ConstraintsAndSizes.Road.lineDash
         
         layer.addSublayer(separatorLayer)
         

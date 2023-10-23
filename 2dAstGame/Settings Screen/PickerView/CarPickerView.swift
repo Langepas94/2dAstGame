@@ -10,9 +10,9 @@ import UIKit
 
 
 class CarPickerView: BasePickerView {
-    var carsArray = AppResources.AppStringsConstants.DataBase.PickerData.Cars.allCases
+    var carsArray = AppResources.UniqueConstants.DataBase.PickerData.Cars.allCases
     var carsImages: [UIImage] = []
-    var carsUserKey: String = AppResources.AppStringsConstants.DataBase.PickerData.Cars.carIndex
+    var carsUserKey: String = AppResources.UniqueConstants.DataBase.PickerData.Cars.carIndex
     init() {
         self.carsImages = carsArray.compactMap { name in
             return UIImage(named: name)

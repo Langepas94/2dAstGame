@@ -11,9 +11,9 @@ import UIKit
 
 
 class BarrierPickerView: BasePickerView {
-    var barriersArray = AppResources.AppStringsConstants.DataBase.PickerData.Barriers.allCases
+    var barriersArray = AppResources.UniqueConstants.DataBase.PickerData.Barriers.allCases
     var barriersImages: [UIImage] = []
-    var barrierUserKey: String = AppResources.AppStringsConstants.DataBase.PickerData.Barriers.barrierIndex
+    var barrierUserKey: String = AppResources.UniqueConstants.DataBase.PickerData.Barriers.barrierIndex
     init() {
         self.barriersImages = barriersArray.compactMap { name in
             return UIImage(named: name)

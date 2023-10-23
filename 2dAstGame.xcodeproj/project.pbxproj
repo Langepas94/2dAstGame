@@ -88,6 +88,7 @@
 		44059C522ACA9E6C0090AA0E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				44E553D42AE66CCC007741C1 /* gif */,
 				444CEA582AE15D1000FBB273 /* Font */,
 				44059C532ACA9E7A0090AA0E /* Resources.swift */,
 			);
@@ -169,7 +170,6 @@
 				44059C522ACA9E6C0090AA0E /* Resources */,
 				44BA42672ACA995500A68F62 /* MainScreen */,
 				4443FFAB2AC577760079510A /* AppDelegate.swift */,
-				444CEA5E2AE2925100FBB273 /* fire.gif */,
 				4443FFAD2AC577760079510A /* SceneDelegate.swift */,
 				4443FFB42AC577780079510A /* Assets.xcassets */,
 				4443FFB62AC577780079510A /* LaunchScreen.storyboard */,
@@ -261,6 +261,14 @@
 				4443FFAF2AC577760079510A /* MainScreenViewController.swift */,
 			);
 			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		44E553D42AE66CCC007741C1 /* gif */ = {
+			isa = PBXGroup;
+			children = (
+				444CEA5E2AE2925100FBB273 /* fire.gif */,
+			);
+			path = gif;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -17,14 +17,14 @@ class BasePickerView: UIView {
     
     let leftButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: AppResources.AppScreenUIColors.selectorPrevious), for: .normal)
+        button.setImage(UIImage(named: AppResources.Screens.SettingsScreen.Selector.Images.selectorPrevious), for: .normal)
 
         button.sizeToFit()
         return button
     }()
     let rightButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: AppResources.AppScreenUIColors.selectorNext), for: .normal)
+        button.setImage(UIImage(named: AppResources.Screens.SettingsScreen.Selector.Images.selectorNext), for: .normal)
         button.sizeToFit()
         return button
     }()
@@ -61,7 +61,7 @@ class BasePickerView: UIView {
     func setupUI() {
         
         addSubview(stackView)
-        baseImageView.frame.size = AppResources.AppConstraints.SettingsScreen.pickerSize
+        baseImageView.frame.size = AppResources.Screens.SettingsScreen.ConstraintsAndSizes.pickerSize
 
         backgroundColor = .clear
         
@@ -88,10 +88,10 @@ class BasePickerView: UIView {
         baseImageView.image = array[currentIndex]
         let name = getItem(currentIndex)
         
-        if userDefaultsKey == AppResources.AppStringsConstants.DataBase.PickerData.Barriers.barrierIndex {
+        if userDefaultsKey == AppResources.UniqueConstants.DataBase.PickerData.Barriers.barrierIndex {
             db.save(dataType: .selectedBarrier, data: name)
             
-        } else if userDefaultsKey == AppResources.AppStringsConstants.DataBase.PickerData.Cars.carIndex {
+        } else if userDefaultsKey == AppResources.UniqueConstants.DataBase.PickerData.Cars.carIndex {
             
             db.save(dataType: .selectedCar, data: name)
         }
@@ -103,10 +103,10 @@ class BasePickerView: UIView {
         let name = getItem(currentIndex)
         
         
-        if userDefaultsKey == AppResources.AppStringsConstants.DataBase.PickerData.Barriers.barrierIndex{
+        if userDefaultsKey == AppResources.UniqueConstants.DataBase.PickerData.Barriers.barrierIndex{
             db.save(dataType: .selectedBarrier, data: name)
             
-        } else if userDefaultsKey == AppResources.AppStringsConstants.DataBase.PickerData.Cars.carIndex {
+        } else if userDefaultsKey == AppResources.UniqueConstants.DataBase.PickerData.Cars.carIndex {
             
             db.save(dataType: .selectedCar, data: name)
         }
