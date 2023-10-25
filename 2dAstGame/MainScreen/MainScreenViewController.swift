@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainScreenViewController: UIViewController {
+final class MainScreenViewController: UIViewController {
     
     private lazy var startButton: BaseButtonView = {
         let button = BaseButtonView()
@@ -73,7 +73,7 @@ class MainScreenViewController: UIViewController {
 
 extension MainScreenViewController {
     
-    func setupUI() {
+    private func setupUI() {
         backgroundImage.frame = view.frame
         view.addSubview(backgroundImage)
         view.sendSubviewToBack(backgroundImage)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecordTableViewCell: UITableViewCell {
+final class RecordTableViewCell: UITableViewCell {
     
     static let reuseID = String(describing: RecordTableViewCell.self)
     

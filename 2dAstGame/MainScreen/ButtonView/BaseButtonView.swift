@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BaseButtonView: UIButton {
+final class BaseButtonView: UIButton {
     
     private func setupAppearance() {
         backgroundColor = AppResources.UniqueConstants.ColorsImages.backgroundColor

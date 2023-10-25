@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RecordsViewController: UIViewController {
+final class RecordsViewController: UIViewController {
     
     private var db = DataBase()
     var records: [ScoreModel]?

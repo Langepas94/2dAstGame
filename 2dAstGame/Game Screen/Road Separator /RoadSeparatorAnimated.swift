@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class RoadSeparatorAnimated: UIView {
+final class RoadSeparatorAnimated: UIView {
     
     private let roadLayer = CAShapeLayer()
     private let separatorLayer = CAShapeLayer()
@@ -65,7 +65,6 @@ class RoadSeparatorAnimated: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-      
         setupLayers(0)
     }
 }

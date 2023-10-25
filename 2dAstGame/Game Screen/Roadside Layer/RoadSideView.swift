@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class RoadSideView: UIView {
+final class RoadSideView: UIView {
     
     private let leftSide = UIView()
     private let rightSide = UIView()

@@ -10,7 +10,7 @@ import UIKit
 import Photos
 import AVFoundation
 
-class ActionSheet: UIAlertController {
+final class ActionSheet: UIAlertController {
     
     // MARK: - Variables
     let imagePicker = UIImagePickerController()

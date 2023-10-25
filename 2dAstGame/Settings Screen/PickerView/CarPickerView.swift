@@ -7,9 +7,7 @@
 
 import UIKit
 
-
-
-class CarPickerView: BasePickerView {
+final class CarPickerView: BasePickerView {
     var carsArray = AppResources.UniqueConstants.DataBase.PickerData.Cars.allCases
     var carsImages: [UIImage] = []
     var carsUserKey: String = AppResources.UniqueConstants.DataBase.PickerData.Cars.carIndex

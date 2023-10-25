@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class FileManagerWorker {
+final class FileManagerWorker {
     
     private let filePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
     

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class GameAlert {
+final class GameAlert {
     typealias AlertCompletionHandler = (UIAlertAction) -> Void
        
        func showAlert(title: String, message: String, viewController: UIViewController, exitAction: @escaping AlertCompletionHandler, restartAction: @escaping AlertCompletionHandler) {

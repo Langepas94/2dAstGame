@@ -18,7 +18,7 @@ final class GameViewController: UIViewController {
     }()
     
     private let roadSide: RoadSideView  = {
-        let roadSide = RoadSideView(frame: .zero, roadsideWidth: AppResources.Screens.GameScreen.ConstraintsAndSizes.Road.roadLineWidth)
+        let roadSide = RoadSideView(frame: .zero, roadsideWidth: AppResources.Screens.GameScreen.ConstraintsAndSizes.Road.roadsideWidth)
         roadSide.translatesAutoresizingMaskIntoConstraints = false
         return roadSide
     }()
@@ -89,6 +89,7 @@ final class GameViewController: UIViewController {
         setupPlayerViewUI()
         setupGameScoreUI()
         setupGameButtonsUI()
+        displayLinkActive()
     }
     
     func preGameSetup() {
@@ -194,7 +195,7 @@ extension GameViewController {
     
     private func gameStarter() {
         gameScore.clear()
-        self.displayLinkActive()
+       
         self.updateScoreLabel()
         gametimer = Timer.scheduledTimer(withTimeInterval: AppResources.Screens.GameScreen.GameLogic.gameTimer, repeats: true, block: { [weak self] timer in
             self?.animationScoreUpdater()
@@ -214,28 +215,30 @@ extension GameViewController {
     
     // MARK: Game alert
     private func gameAlertViewPresent() {
-        
-        gameAlert.showAlert(title: AppResources.Screens.GameScreen.StringConstants.GameAlertTexts.title, message: AppResources.Screens.GameScreen.StringConstants.GameAlertTexts.message, viewController: self) { action in
+        stopAnyTimersAndAnimations()
+        gameAlert.showAlert(title: AppResources.Screens.GameScreen.StringConstants.GameAlertTexts.title, message: AppResources.Screens.GameScreen.StringConstants.GameAlertTexts.message, viewController: self) { _ in
             self.db.save(dataType: AppResources.UniqueConstants.DataBase.UserDefaultsKeys.records, data: self.gameScore)
             self.fireCrash()
             self.dismiss(animated: true)
         } restartAction: { _ in
+            self.resetMovingViewPosition()
             self.db.save(dataType: AppResources.UniqueConstants.DataBase.UserDefaultsKeys.records, data: self.gameScore)
             self.fireCrash()
-            self.resetMovingViewPosition()
             self.gameStarter()
+            if self.gameDisplayLink == nil {
+                self.displayLinkActive()
+            }
         }
     }
     
     // MARK: Game stops
     private func stopAnyTimersAndAnimations() {
-        invalidateAllTimers()
-        barrierView.stopAnimating()
+      
         barrierView.layer.removeAllAnimations()
         roadSeparatorView.stopAllAnimations()
         playerView.stopAnimating()
         playerView.layer.removeAllAnimations()
-        
+        invalidateAllTimers()
     }
     
     private func invalidateAllTimers() {
@@ -284,8 +287,7 @@ extension GameViewController {
         let stoneFrame = barrierView.layer.presentation()?.frame ?? barrierView.frame
         
         if movingFrame.intersects(stoneFrame) || movingFrame.intersects(roadSides.0) || movingFrame.intersects(roadSides.1) {
-            barrierView.frame = stoneFrame
-            stopAnyTimersAndAnimations()
+            barrierView.frame.origin = stoneFrame.origin
             fireCrash(movingFrame)
             gameAlertViewPresent()
         }

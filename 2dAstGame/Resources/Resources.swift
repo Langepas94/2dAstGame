@@ -81,7 +81,6 @@ enum AppResources {
         
         enum RecordsScreen {
             
-            
             enum Colors {
                 enum Cell {
                     static let mainText = UIColor.black
@@ -159,7 +158,6 @@ enum AppResources {
                     static let frameSize = CGSize(width: width, height: height)
                 }
                 
-                
                 enum Barrier {
                     static let originXMax = 100
                     static let originYMax = 100
@@ -182,7 +180,6 @@ enum AppResources {
                 }
             }
         }
-        
     }
     
     enum UniqueConstants {

@@ -8,9 +8,7 @@
 import Foundation
 import UIKit
 
-
-
-class BarrierPickerView: BasePickerView {
+final class BarrierPickerView: BasePickerView {
     var barriersArray = AppResources.UniqueConstants.DataBase.PickerData.Barriers.allCases
     var barriersImages: [UIImage] = []
     var barrierUserKey: String = AppResources.UniqueConstants.DataBase.PickerData.Barriers.barrierIndex
