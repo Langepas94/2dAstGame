@@ -24,7 +24,6 @@ final class RoadSeparatorAnimated: UIView {
     }
     
     // MARK: Setup Line with speed
-    
     private func setupLayers(_ speed: CFTimeInterval) {
         separatorLayer.strokeColor = AppResources.Screens.GameScreen.Colors.Road.roadLineColor
         separatorLayer.lineWidth = AppResources.Screens.GameScreen.ConstraintsAndSizes.Road.roadLineWidth
@@ -52,7 +51,6 @@ final class RoadSeparatorAnimated: UIView {
         separatorPath.move(to: CGPoint(x: bounds.width / 2, y: 0))
         separatorPath.addLine(to: CGPoint(x: bounds.width / 2, y: bounds.height))
         separatorLayer.path = separatorPath.cgPath
-        
         setupLayers(speed)
     }
     

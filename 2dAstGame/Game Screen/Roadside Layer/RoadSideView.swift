@@ -15,7 +15,7 @@ final class RoadSideView: UIView {
     private var width = CGFloat()
     
     // MARK: Ширина дороги
-    func roadSideWidth() {
+    private func roadSideWidth() {
         leftSide.frame = CGRect(x: 0, y: 0, width: self.width, height: bounds.height)
         rightSide.frame = CGRect(x: bounds.maxX - self.width, y: 0, width: width, height: bounds.height)
     }
@@ -44,7 +44,6 @@ final class RoadSideView: UIView {
         rightSide.backgroundColor = .orange
         addSubview(leftSide)
         addSubview(rightSide)
-       
     }
     
     override func layoutSubviews() {
@@ -58,7 +57,6 @@ final class RoadSideView: UIView {
         super.init(frame: frame)
         setupSideViews()
         self.width = roadsideWidth
-        
     }
     
     required init?(coder: NSCoder) {

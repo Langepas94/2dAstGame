@@ -42,13 +42,13 @@ final class SettingsViewController: UIViewController {
     
     private let backgroundImage: UIImageView = {
         let bg = UIImageView(image: UIImage(named: AppResources.UniqueConstants.ColorsImages.backgroundSecondImage))
-   
         bg.contentMode = .center
         return bg
     }()
     
     private let db = DataBase()
     
+    // MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTextField()
@@ -65,7 +65,6 @@ final class SettingsViewController: UIViewController {
     }
     
     // MARK: - Flow
-    
     private func gesturesSettings() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectImage))
         avatarImageView.addGestureRecognizer(tapGesture)
@@ -102,7 +101,6 @@ extension SettingsViewController {
         view.addSubview(userName)
         view.addSubview(carPicker)
         view.addSubview(barrierPicker)
-       
         view.addSubview(backgroundImage)
         view.sendSubviewToBack(backgroundImage)
         
@@ -111,31 +109,33 @@ extension SettingsViewController {
         }
         
         backgroundImage.frame = view.frame
+        
         NSLayoutConstraint.activate([
             avatarImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.Image.top),
             avatarImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.Image.leading),
             avatarImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.Image.trailing),
             avatarImageView.heightAnchor.constraint(equalTo: avatarImageView.widthAnchor),
+            avatarImageView.bottomAnchor.constraint(equalTo: userName.topAnchor, constant: 6),
             
-            userName.topAnchor.constraint(equalTo: avatarImageView.bottomAnchor, constant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.Name.top),
+            userName.heightAnchor.constraint(equalToConstant: 100),
             userName.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.Name.leading),
             userName.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.Name.trailing),
+            userName.bottomAnchor.constraint(equalTo: carPicker.topAnchor, constant: 6),
             
-            carPicker.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.CarPicker.top),
+
             carPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             carPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            carPicker.heightAnchor.constraint(equalToConstant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.CarPicker.height),
+            carPicker.bottomAnchor.constraint(equalTo: barrierPicker.topAnchor),
             
-            barrierPicker.topAnchor.constraint(equalTo: carPicker.bottomAnchor, constant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.BarrierPicker.top),
             barrierPicker.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             barrierPicker.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            barrierPicker.heightAnchor.constraint(equalToConstant: AppResources.Screens.SettingsScreen.ConstraintsAndSizes.BarrierPicker.height),
+            barrierPicker.heightAnchor.constraint(equalTo: carPicker.heightAnchor),
             barrierPicker.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         blurEffect()
     }
     
-    func blurEffect() {
+   private func blurEffect() {
         let blurEffect = UIBlurEffect(style: .light)
         let viewEffect = UIVisualEffectView(effect: blurEffect)
         viewEffect.autoresizingMask = [.flexibleWidth,.flexibleHeight]

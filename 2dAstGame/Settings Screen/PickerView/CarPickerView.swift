@@ -11,6 +11,8 @@ final class CarPickerView: BasePickerView {
     var carsArray = AppResources.UniqueConstants.DataBase.PickerData.Cars.allCases
     var carsImages: [UIImage] = []
     var carsUserKey: String = AppResources.UniqueConstants.DataBase.PickerData.Cars.carIndex
+    
+    // MARK: - Init
     init() {
         self.carsImages = carsArray.compactMap { name in
             return UIImage(named: name)

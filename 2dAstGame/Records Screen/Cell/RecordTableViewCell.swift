@@ -42,7 +42,7 @@ final class RecordTableViewCell: UITableViewCell {
     
     // MARK: - Flow
     
-    func setupUI() {
+   private func setupUI() {
         
         contentView.addSubview(userImage)
         contentView.addSubview(userName)

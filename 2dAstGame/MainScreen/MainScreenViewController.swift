@@ -13,7 +13,6 @@ final class MainScreenViewController: UIViewController {
         let button = BaseButtonView()
         button.setTitle(AppResources.Screens.MainScreen.StringConstants.BaseButton.start)
         button.addTarget(self, action: #selector(gameScreen), for: .touchUpInside)
-
         return button
     }()
     
@@ -52,17 +51,17 @@ final class MainScreenViewController: UIViewController {
     
     // MARK: - Flow
     
-    @objc func settingsScreen() {
+    @objc private func settingsScreen() {
         let vc = SettingsViewController()
         self.present(vc, animated: true)
     }
     
-    @objc func recordsScreen() {
+    @objc private func recordsScreen() {
         let vc = RecordsViewController()
         self.present(vc, animated: true)
     }
     
-    @objc func gameScreen() {
+    @objc private func gameScreen() {
         let vc = GameViewController()
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .fullScreen
@@ -77,7 +76,6 @@ extension MainScreenViewController {
         backgroundImage.frame = view.frame
         view.addSubview(backgroundImage)
         view.sendSubviewToBack(backgroundImage)
-        
         view.addSubview(buttonsStackView)
         buttonsStackView.addArrangedSubview(startButton)
         buttonsStackView.addArrangedSubview(recordsButton)

@@ -13,15 +13,16 @@ import AVFoundation
 final class ActionSheet: UIAlertController {
     
     // MARK: - Variables
-    let imagePicker = UIImagePickerController()
+    private let imagePicker = UIImagePickerController()
     
     // MARK - Flow
     
     static func showImagePicker(handler: @escaping (UIImagePickerController.SourceType) -> Void) -> UIAlertController {
-        let alertController = UIAlertController(title: "Выберите источник", message: "Bring your camera", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Выберите источник", message: "Нам нужен доступ", preferredStyle: .actionSheet)
         
         let cameraAction = UIAlertAction(title: "Камера", style: .default) { _ in
             let cameraAuthorizationStatus = AVCaptureDevice.authorizationStatus(for: .video)
+            
             switch cameraAuthorizationStatus {
             case .authorized:
                 handler(.camera)
@@ -42,6 +43,7 @@ final class ActionSheet: UIAlertController {
         
         let galleryAction = UIAlertAction(title: "Галерея", style: .default) { _ in
             let galleryAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+            
             switch galleryAuthorizationStatus {
             case .authorized, .limited:
                 handler(.photoLibrary)

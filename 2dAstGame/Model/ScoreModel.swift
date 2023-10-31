@@ -19,6 +19,5 @@ struct ScoreModel: Codable {
 
 extension ScoreModel: Hashable {
     func hash(into hasher: inout Hasher) {
-        
     }
 }

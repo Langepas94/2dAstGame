@@ -13,7 +13,7 @@ protocol DataBaseProtocol {
     func read<T>(dataType: AppResources.UniqueConstants.DataBase.UserDefaultsKeys) -> T?
 }
 
-class DataBase: DataBaseProtocol {
+final class DataBase: DataBaseProtocol {
     
     let fileManagerWorker = FileManagerWorker()
     

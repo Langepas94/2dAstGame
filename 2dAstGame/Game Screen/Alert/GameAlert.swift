@@ -17,11 +17,10 @@ final class GameAlert {
            
            let exitAction = UIAlertAction(title: AppResources.Screens.GameScreen.StringConstants.GameAlertTexts.exit, style: .default, handler: exitAction)
            alertController.addAction(exitAction)
-           
+
            let restartAction = UIAlertAction(title: AppResources.Screens.GameScreen.StringConstants.GameAlertTexts.restart, style: .destructive, handler: restartAction)
            alertController.addAction(restartAction)
            
            viewController.present(alertController, animated: true, completion: nil)
        }
-
 }

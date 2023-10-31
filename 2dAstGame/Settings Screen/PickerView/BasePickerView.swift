@@ -9,27 +9,28 @@ import UIKit
 
 class BasePickerView: UIView {
     
-    let baseImageView: UIImageView = {
+   private let baseImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
-    let leftButton: UIButton = {
+    private let leftButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: AppResources.Screens.SettingsScreen.Selector.Images.selectorPrevious), for: .normal)
 
         button.sizeToFit()
         return button
     }()
-    let rightButton: UIButton = {
+    
+    private let rightButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: AppResources.Screens.SettingsScreen.Selector.Images.selectorNext), for: .normal)
         button.sizeToFit()
         return button
     }()
     
-    let stackView: UIStackView = {
+    private let stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
         stack.distribution = .fillEqually
@@ -38,11 +39,11 @@ class BasePickerView: UIView {
         return stack
     }()
     
-    var db = DataBase()
-    var array: [UIImage]
-    var imageNames: [String]
-    var userDefaultsKey: String = ""
-    var currentIndex: Int {
+    private var db = DataBase()
+    private var array: [UIImage]
+    private var imageNames: [String]
+    private var userDefaultsKey: String = ""
+    private var currentIndex: Int {
         get {
             return UserDefaults.standard.integer(forKey: userDefaultsKey)
         }
@@ -52,13 +53,13 @@ class BasePickerView: UIView {
     }
     
     // MARK: Flow
-    func setInitial() {
+    private func setInitial() {
         currentIndex = UserDefaults.standard.integer(forKey: userDefaultsKey)
         baseImageView.image = array[currentIndex]
     }
     
     // MARK: - Setup UI
-    func setupUI() {
+    private func setupUI() {
         
         addSubview(stackView)
         baseImageView.frame.size = AppResources.Screens.SettingsScreen.ConstraintsAndSizes.pickerSize
@@ -83,7 +84,7 @@ class BasePickerView: UIView {
         ])
     }
     
-    @objc func selectedLeft() {
+    @objc private func selectedLeft() {
         currentIndex = (currentIndex - 1 + array.count) % array.count
         baseImageView.image = array[currentIndex]
         let name = getItem(currentIndex)
@@ -97,7 +98,7 @@ class BasePickerView: UIView {
         }
     }
     
-    @objc func selectedRight() {
+    @objc private func selectedRight() {
         currentIndex = (currentIndex + 1) % array.count
         baseImageView.image = array[currentIndex]
         let name = getItem(currentIndex)
@@ -112,7 +113,7 @@ class BasePickerView: UIView {
         }
     }
     
-    func getItem(_ index: Int) -> String {
+   private func getItem(_ index: Int) -> String {
         return imageNames[index]
     }
     

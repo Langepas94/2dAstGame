@@ -10,7 +10,7 @@ import UIKit
 final class RecordsViewController: UIViewController {
     
     private var db = DataBase()
-    var records: [ScoreModel]?
+    private var records: [ScoreModel]?
     
     private var tableView: UITableView = {
         let table = UITableView()
@@ -24,6 +24,7 @@ final class RecordsViewController: UIViewController {
         return bg
     }()
     
+    // MARK: view lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -31,7 +32,6 @@ final class RecordsViewController: UIViewController {
     }
     
     // MARK: - Flow
-    
     func setupUI() {
         view.addSubview(tableView)
         tableView.backgroundView = backgroundImage
@@ -42,7 +42,6 @@ final class RecordsViewController: UIViewController {
     
     }
 
-    
     func blurEffect() {
         let blurEffect = UIBlurEffect(style: .systemThinMaterialLight)
         let viewEffect = UIVisualEffectView(effect: blurEffect)
@@ -54,7 +53,6 @@ final class RecordsViewController: UIViewController {
 
 extension RecordsViewController: UITableViewDelegate, UITableViewDataSource {
 
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         records?.count ?? 0
     }
@@ -63,29 +61,23 @@ extension RecordsViewController: UITableViewDelegate, UITableViewDataSource {
         1
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: RecordTableViewCell.reuseID, for: indexPath) as? RecordTableViewCell else { return UITableViewCell() }
-        
         guard let records = records else { return UITableViewCell() }
         let sorted = records.sorted(by: {$0.score > $1.score })
         cell.configure(sorted[indexPath.row])
-
       return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 100, width: tableView.frame.size.width, height: AppResources.Screens.RecordsScreen.ConstraintsAndSizes.Table.heightForHeader))
-        
         let label = UILabel(frame: headerView.bounds)
         label.textAlignment = .center
         label.text = "Score"
         label.font = AppResources.UniqueConstants.Fonts.pixelUsernameFont
         label.textColor = .white
         headerView.addSubview(label)
-        
         return headerView
-        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

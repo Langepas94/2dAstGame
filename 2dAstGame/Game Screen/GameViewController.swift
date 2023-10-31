@@ -57,7 +57,6 @@ final class GameViewController: UIViewController {
     private var buttonSpeedTimer: Timer?
     private var gametimer: Timer?
     private var gameDisplayLink: CADisplayLink?
-    
     private var fireGifView = UIImageView()
     private var gameAlert: GameAlert = GameAlert()
     private var gameScore: ScoreModel = ScoreModel()
@@ -83,7 +82,7 @@ final class GameViewController: UIViewController {
     }
     
     // MARK: - Flow
-    func uiSetup() {
+   private func uiSetup() {
         setupRoadUI()
         setupBarrierViewUI()
         setupPlayerViewUI()
@@ -92,7 +91,7 @@ final class GameViewController: UIViewController {
         displayLinkActive()
     }
     
-    func preGameSetup() {
+    private func preGameSetup() {
         gameSetup()
         gameStarter()
     }
@@ -319,7 +318,6 @@ extension GameViewController {
     }
     
     @objc private func moveViewLeft() {
-        
         guard playerView.frame.origin.x > 0 else {
             return
         }

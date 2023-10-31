@@ -88,6 +88,7 @@
 		44059C522ACA9E6C0090AA0E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				443818882AF1A950006A5170 /* AppFiles */,
 				44E553D42AE66CCC007741C1 /* gif */,
 				444CEA582AE15D1000FBB273 /* Font */,
 				44059C532ACA9E7A0090AA0E /* Resources.swift */,
@@ -134,6 +135,18 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		443818882AF1A950006A5170 /* AppFiles */ = {
+			isa = PBXGroup;
+			children = (
+				4443FFAB2AC577760079510A /* AppDelegate.swift */,
+				4443FFAD2AC577760079510A /* SceneDelegate.swift */,
+				4443FFB42AC577780079510A /* Assets.xcassets */,
+				4443FFB62AC577780079510A /* LaunchScreen.storyboard */,
+				4443FFB92AC577780079510A /* Info.plist */,
+			);
+			path = AppFiles;
+			sourceTree = "<group>";
+		};
 		4443A4202ACEC4C900C693F4 /* Roadside Layer */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,19 +174,14 @@
 		4443FFAA2AC577760079510A /* 2dAstGame */ = {
 			isa = PBXGroup;
 			children = (
-				4488ADFB2AD6F20B00912F66 /* Model */,
-				4488AE052AD96F5D00912F66 /* Extension */,
-				44059C5E2ACAB0120090AA0E /* Services */,
+				44BA42672ACA995500A68F62 /* MainScreen */,
 				44059C572ACAAA890090AA0E /* Game Screen */,
 				44059C562ACAAA6C0090AA0E /* Records Screen */,
 				44059C552ACAAA630090AA0E /* Settings Screen */,
+				44059C5E2ACAB0120090AA0E /* Services */,
+				4488ADFB2AD6F20B00912F66 /* Model */,
+				4488AE052AD96F5D00912F66 /* Extension */,
 				44059C522ACA9E6C0090AA0E /* Resources */,
-				44BA42672ACA995500A68F62 /* MainScreen */,
-				4443FFAB2AC577760079510A /* AppDelegate.swift */,
-				4443FFAD2AC577760079510A /* SceneDelegate.swift */,
-				4443FFB42AC577780079510A /* Assets.xcassets */,
-				4443FFB62AC577780079510A /* LaunchScreen.storyboard */,
-				4443FFB92AC577780079510A /* Info.plist */,
 			);
 			path = 2dAstGame;
 			sourceTree = "<group>";
@@ -229,8 +237,8 @@
 		4488ADFF2AD7EEDB00912F66 /* PickerView */ = {
 			isa = PBXGroup;
 			children = (
-				4488AE002AD7EEFC00912F66 /* CarPickerView.swift */,
 				4488AE082AD97ADE00912F66 /* BasePickerView.swift */,
+				4488AE002AD7EEFC00912F66 /* CarPickerView.swift */,
 				4488AE0B2AD9883D00912F66 /* BarrierPickerView.swift */,
 			);
 			path = PickerView;
@@ -505,7 +513,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q7D95C8V9R;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = 2dAstGame/Info.plist;
+				INFOPLIST_FILE = 2dAstGame/Resources/AppFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -536,7 +544,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q7D95C8V9R;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = 2dAstGame/Info.plist;
+				INFOPLIST_FILE = 2dAstGame/Resources/AppFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

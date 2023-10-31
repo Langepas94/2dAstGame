@@ -82,7 +82,6 @@ final class FileManagerWorker {
     func loadRecords() -> [ScoreModel]? {
         guard let filePath = filePath else { return nil }
         let fileURL = filePath.appendingPathComponent(AppResources.UniqueConstants.DataBase.recordsJSON)
-        let filesmallAvatar = filePath.appendingPathComponent(AppResources.UniqueConstants.DataBase.smallAvatar)
         do {
             let data = try Data(contentsOf: fileURL)
             let decoder = JSONDecoder()
@@ -91,7 +90,7 @@ final class FileManagerWorker {
                 var copy = model
                 if copy.userImg == AppResources.UniqueConstants.DataBase.Images.defaultPerson {
                     return copy
-                } else if copy.name == UserDefaults.standard.string(forKey: "name") {
+                } else if copy.name == UserDefaults.standard.string(forKey: AppResources.UniqueConstants.DataBase.UserDefaultsKeys.name.rawValue) {
                     let fileURL = filePath.appendingPathComponent(AppResources.UniqueConstants.DataBase.smallAvatar)
                     if FileManager.default.fileExists(atPath: filePath.path) {
                         copy.userImg = getAvatarPath(copy.name)
@@ -100,7 +99,6 @@ final class FileManagerWorker {
                         copy.userImg = fileURL.path
                         return copy
                     }
-                 
                 }
                 else {
                     copy.userImg = getAvatarPath(model.name)
@@ -110,7 +108,7 @@ final class FileManagerWorker {
             let uniqueRecords = Array(Set(records))
             return uniqueRecords
         } catch {
-            print("Ошибка при чтении файла JSON: \(error)")
+            print("Ошибка при чтении файла: \(error)")
             return nil
         }
     }
@@ -140,7 +138,7 @@ final class FileManagerWorker {
         }
         
         let avatarFilename = userAvatarDirectory.appendingPathComponent("\(userName).jpg")
-
+        
         let imageToSave = loadImage()
         saveCropSmallImage(imageToSave, url: avatarFilename)
     }
