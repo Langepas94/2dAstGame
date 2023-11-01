@@ -1,6 +1,6 @@
 # 2dAstGame
 
-● MVC 
+● MVC  
 ● Animations  
 ● UserDefaults  
 
