@@ -286,7 +286,6 @@ extension GameViewController {
         let stoneFrame = barrierView.layer.presentation()?.frame ?? barrierView.frame
         
         if movingFrame.intersects(stoneFrame) || movingFrame.intersects(roadSides.0) || movingFrame.intersects(roadSides.1) {
-            barrierView.frame.origin = stoneFrame.origin
             fireCrash(movingFrame)
             gameAlertViewPresent()
         }
